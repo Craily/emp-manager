@@ -12,4 +12,5 @@ public class IndexViewController {
 	public String index() {
 		return "index/index";
 	}
+	
 }
