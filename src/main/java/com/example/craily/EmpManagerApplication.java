@@ -5,7 +5,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-@MapperScan("com.example.craily.dao")
+@MapperScan(basePackages = {"com.example.craily.dao", "com.example.craily.cust_dao"})
 public class EmpManagerApplication {
 
 	public static void main(String[] args) {

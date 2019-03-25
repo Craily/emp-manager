@@ -9,11 +9,14 @@ public class Menu {
 
     private String parentmenurulesno;
 
-    public Menu(String menuno, String name, String url, String parentmenurulesno) {
+    private String openRules;
+
+    public Menu(String menuno, String name, String url, String parentmenurulesno, String openRules) {
         this.menuno = menuno;
         this.name = name;
         this.url = url;
         this.parentmenurulesno = parentmenurulesno;
+        this.openRules = openRules;
     }
 
     public Menu() {
@@ -50,5 +53,13 @@ public class Menu {
 
     public void setParentmenurulesno(String parentmenurulesno) {
         this.parentmenurulesno = parentmenurulesno == null ? null : parentmenurulesno.trim();
+    }
+
+    public String getOpenRules() {
+        return openRules;
+    }
+
+    public void setOpenRules(String openRules) {
+        this.openRules = openRules == null ? null : openRules.trim();
     }
 }

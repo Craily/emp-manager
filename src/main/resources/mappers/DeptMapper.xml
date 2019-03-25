@@ -3,7 +3,7 @@
 <mapper namespace="com.example.craily.dao.DeptMapper">
   <resultMap id="BaseResultMap" type="com.example.craily.po.Dept">
     <constructor>
-      <arg column="deptno" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="dept_no" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="name" javaType="java.lang.String" jdbcType="VARCHAR" />
     </constructor>
   </resultMap>
@@ -66,7 +66,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    deptno, name
+    dept_no, name
   </sql>
   <select id="selectByExample" parameterType="com.example.craily.po.DeptExample" resultMap="BaseResultMap">
     select
@@ -89,22 +89,22 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.example.craily.po.Dept">
-    insert into dept (deptno, name)
-    values (#{deptno,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR})
+    insert into dept (dept_no, name)
+    values (#{deptNo,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.example.craily.po.Dept">
     insert into dept
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="deptno != null">
-        deptno,
+      <if test="deptNo != null">
+        dept_no,
       </if>
       <if test="name != null">
         name,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="deptno != null">
-        #{deptno,jdbcType=VARCHAR},
+      <if test="deptNo != null">
+        #{deptNo,jdbcType=VARCHAR},
       </if>
       <if test="name != null">
         #{name,jdbcType=VARCHAR},
@@ -120,8 +120,8 @@
   <update id="updateByExampleSelective" parameterType="map">
     update dept
     <set>
-      <if test="record.deptno != null">
-        deptno = #{record.deptno,jdbcType=VARCHAR},
+      <if test="record.deptNo != null">
+        dept_no = #{record.deptNo,jdbcType=VARCHAR},
       </if>
       <if test="record.name != null">
         name = #{record.name,jdbcType=VARCHAR},
@@ -133,7 +133,7 @@
   </update>
   <update id="updateByExample" parameterType="map">
     update dept
-    set deptno = #{record.deptno,jdbcType=VARCHAR},
+    set dept_no = #{record.deptNo,jdbcType=VARCHAR},
       name = #{record.name,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />

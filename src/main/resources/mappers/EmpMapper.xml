@@ -3,13 +3,14 @@
 <mapper namespace="com.example.craily.dao.EmpMapper">
   <resultMap id="BaseResultMap" type="com.example.craily.po.Emp">
     <constructor>
-      <arg column="empno" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="emp_no" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="name" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="birthday" javaType="java.util.Date" jdbcType="DATE" />
       <arg column="sex" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="mobilephone" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="deptno" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="mobile_phone" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="dept_no" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="password" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="job_no" javaType="java.lang.String" jdbcType="VARCHAR" />
     </constructor>
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -71,7 +72,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    empno, name, birthday, sex, mobilephone, deptno, password
+    emp_no, name, birthday, sex, mobile_phone, dept_no, password, job_no
   </sql>
   <select id="selectByExample" parameterType="com.example.craily.po.EmpExample" resultMap="BaseResultMap">
     select
@@ -94,18 +95,18 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.example.craily.po.Emp">
-    insert into emp (empno, name, birthday, 
-      sex, mobilephone, deptno, 
-      password)
-    values (#{empno,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{birthday,jdbcType=DATE}, 
-      #{sex,jdbcType=VARCHAR}, #{mobilephone,jdbcType=VARCHAR}, #{deptno,jdbcType=VARCHAR}, 
-      #{password,jdbcType=VARCHAR})
+    insert into emp (emp_no, name, birthday, 
+      sex, mobile_phone, dept_no, 
+      password, job_no)
+    values (#{empNo,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{birthday,jdbcType=DATE}, 
+      #{sex,jdbcType=VARCHAR}, #{mobilePhone,jdbcType=VARCHAR}, #{deptNo,jdbcType=VARCHAR}, 
+      #{password,jdbcType=VARCHAR}, #{jobNo,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.example.craily.po.Emp">
     insert into emp
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="empno != null">
-        empno,
+      <if test="empNo != null">
+        emp_no,
       </if>
       <if test="name != null">
         name,
@@ -116,19 +117,22 @@
       <if test="sex != null">
         sex,
       </if>
-      <if test="mobilephone != null">
-        mobilephone,
+      <if test="mobilePhone != null">
+        mobile_phone,
       </if>
-      <if test="deptno != null">
-        deptno,
+      <if test="deptNo != null">
+        dept_no,
       </if>
       <if test="password != null">
         password,
       </if>
+      <if test="jobNo != null">
+        job_no,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="empno != null">
-        #{empno,jdbcType=VARCHAR},
+      <if test="empNo != null">
+        #{empNo,jdbcType=VARCHAR},
       </if>
       <if test="name != null">
         #{name,jdbcType=VARCHAR},
@@ -139,14 +143,17 @@
       <if test="sex != null">
         #{sex,jdbcType=VARCHAR},
       </if>
-      <if test="mobilephone != null">
-        #{mobilephone,jdbcType=VARCHAR},
+      <if test="mobilePhone != null">
+        #{mobilePhone,jdbcType=VARCHAR},
       </if>
-      <if test="deptno != null">
-        #{deptno,jdbcType=VARCHAR},
+      <if test="deptNo != null">
+        #{deptNo,jdbcType=VARCHAR},
       </if>
       <if test="password != null">
         #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="jobNo != null">
+        #{jobNo,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -159,8 +166,8 @@
   <update id="updateByExampleSelective" parameterType="map">
     update emp
     <set>
-      <if test="record.empno != null">
-        empno = #{record.empno,jdbcType=VARCHAR},
+      <if test="record.empNo != null">
+        emp_no = #{record.empNo,jdbcType=VARCHAR},
       </if>
       <if test="record.name != null">
         name = #{record.name,jdbcType=VARCHAR},
@@ -171,14 +178,17 @@
       <if test="record.sex != null">
         sex = #{record.sex,jdbcType=VARCHAR},
       </if>
-      <if test="record.mobilephone != null">
-        mobilephone = #{record.mobilephone,jdbcType=VARCHAR},
+      <if test="record.mobilePhone != null">
+        mobile_phone = #{record.mobilePhone,jdbcType=VARCHAR},
       </if>
-      <if test="record.deptno != null">
-        deptno = #{record.deptno,jdbcType=VARCHAR},
+      <if test="record.deptNo != null">
+        dept_no = #{record.deptNo,jdbcType=VARCHAR},
       </if>
       <if test="record.password != null">
         password = #{record.password,jdbcType=VARCHAR},
+      </if>
+      <if test="record.jobNo != null">
+        job_no = #{record.jobNo,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -187,13 +197,14 @@
   </update>
   <update id="updateByExample" parameterType="map">
     update emp
-    set empno = #{record.empno,jdbcType=VARCHAR},
+    set emp_no = #{record.empNo,jdbcType=VARCHAR},
       name = #{record.name,jdbcType=VARCHAR},
       birthday = #{record.birthday,jdbcType=DATE},
       sex = #{record.sex,jdbcType=VARCHAR},
-      mobilephone = #{record.mobilephone,jdbcType=VARCHAR},
-      deptno = #{record.deptno,jdbcType=VARCHAR},
-      password = #{record.password,jdbcType=VARCHAR}
+      mobile_phone = #{record.mobilePhone,jdbcType=VARCHAR},
+      dept_no = #{record.deptNo,jdbcType=VARCHAR},
+      password = #{record.password,jdbcType=VARCHAR},
+      job_no = #{record.jobNo,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>

@@ -1,31 +1,31 @@
 package com.example.craily.po;
 
 public class Job {
-    private String jobno;
+    private String jobNo;
 
     private String name;
 
     private String level;
 
-    private String deptno;
+    private String deptNo;
 
-    public Job(String jobno, String name, String level, String deptno) {
-        this.jobno = jobno;
+    public Job(String jobNo, String name, String level, String deptNo) {
+        this.jobNo = jobNo;
         this.name = name;
         this.level = level;
-        this.deptno = deptno;
+        this.deptNo = deptNo;
     }
 
     public Job() {
         super();
     }
 
-    public String getJobno() {
-        return jobno;
+    public String getJobNo() {
+        return jobNo;
     }
 
-    public void setJobno(String jobno) {
-        this.jobno = jobno == null ? null : jobno.trim();
+    public void setJobNo(String jobNo) {
+        this.jobNo = jobNo == null ? null : jobNo.trim();
     }
 
     public String getName() {
@@ -44,11 +44,11 @@ public class Job {
         this.level = level == null ? null : level.trim();
     }
 
-    public String getDeptno() {
-        return deptno;
+    public String getDeptNo() {
+        return deptNo;
     }
 
-    public void setDeptno(String deptno) {
-        this.deptno = deptno == null ? null : deptno.trim();
+    public void setDeptNo(String deptNo) {
+        this.deptNo = deptNo == null ? null : deptNo.trim();
     }
 }

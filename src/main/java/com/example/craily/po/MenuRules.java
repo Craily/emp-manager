@@ -1,43 +1,32 @@
 package com.example.craily.po;
 
 public class MenuRules {
-    private String jobno;
+    private String jobNo;
 
-    private String menuno;
+    private String menuNo;
 
-    private String openrules;
-
-    public MenuRules(String jobno, String menuno, String openrules) {
-        this.jobno = jobno;
-        this.menuno = menuno;
-        this.openrules = openrules;
+    public MenuRules(String jobNo, String menuNo) {
+        this.jobNo = jobNo;
+        this.menuNo = menuNo;
     }
 
     public MenuRules() {
         super();
     }
 
-    public String getJobno() {
-        return jobno;
+    public String getJobNo() {
+        return jobNo;
     }
 
-    public void setJobno(String jobno) {
-        this.jobno = jobno == null ? null : jobno.trim();
+    public void setJobNo(String jobNo) {
+        this.jobNo = jobNo == null ? null : jobNo.trim();
     }
 
-    public String getMenuno() {
-        return menuno;
+    public String getMenuNo() {
+        return menuNo;
     }
 
-    public void setMenuno(String menuno) {
-        this.menuno = menuno == null ? null : menuno.trim();
-    }
-
-    public String getOpenrules() {
-        return openrules;
-    }
-
-    public void setOpenrules(String openrules) {
-        this.openrules = openrules == null ? null : openrules.trim();
+    public void setMenuNo(String menuNo) {
+        this.menuNo = menuNo == null ? null : menuNo.trim();
     }
 }

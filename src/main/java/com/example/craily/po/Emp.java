@@ -3,7 +3,7 @@ package com.example.craily.po;
 import java.util.Date;
 
 public class Emp {
-    private String empno;
+    private String empNo;
 
     private String name;
 
@@ -11,32 +11,35 @@ public class Emp {
 
     private String sex;
 
-    private String mobilephone;
+    private String mobilePhone;
 
-    private String deptno;
+    private String deptNo;
 
     private String password;
 
-    public Emp(String empno, String name, Date birthday, String sex, String mobilephone, String deptno, String password) {
-        this.empno = empno;
+    private String jobNo;
+
+    public Emp(String empNo, String name, Date birthday, String sex, String mobilePhone, String deptNo, String password, String jobNo) {
+        this.empNo = empNo;
         this.name = name;
         this.birthday = birthday;
         this.sex = sex;
-        this.mobilephone = mobilephone;
-        this.deptno = deptno;
+        this.mobilePhone = mobilePhone;
+        this.deptNo = deptNo;
         this.password = password;
+        this.jobNo = jobNo;
     }
 
     public Emp() {
         super();
     }
 
-    public String getEmpno() {
-        return empno;
+    public String getEmpNo() {
+        return empNo;
     }
 
-    public void setEmpno(String empno) {
-        this.empno = empno == null ? null : empno.trim();
+    public void setEmpNo(String empNo) {
+        this.empNo = empNo == null ? null : empNo.trim();
     }
 
     public String getName() {
@@ -63,20 +66,20 @@ public class Emp {
         this.sex = sex == null ? null : sex.trim();
     }
 
-    public String getMobilephone() {
-        return mobilephone;
+    public String getMobilePhone() {
+        return mobilePhone;
     }
 
-    public void setMobilephone(String mobilephone) {
-        this.mobilephone = mobilephone == null ? null : mobilephone.trim();
+    public void setMobilePhone(String mobilePhone) {
+        this.mobilePhone = mobilePhone == null ? null : mobilePhone.trim();
     }
 
-    public String getDeptno() {
-        return deptno;
+    public String getDeptNo() {
+        return deptNo;
     }
 
-    public void setDeptno(String deptno) {
-        this.deptno = deptno == null ? null : deptno.trim();
+    public void setDeptNo(String deptNo) {
+        this.deptNo = deptNo == null ? null : deptNo.trim();
     }
 
     public String getPassword() {
@@ -85,5 +88,13 @@ public class Emp {
 
     public void setPassword(String password) {
         this.password = password == null ? null : password.trim();
+    }
+
+    public String getJobNo() {
+        return jobNo;
+    }
+
+    public void setJobNo(String jobNo) {
+        this.jobNo = jobNo == null ? null : jobNo.trim();
     }
 }

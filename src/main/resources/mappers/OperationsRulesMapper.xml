@@ -3,8 +3,8 @@
 <mapper namespace="com.example.craily.dao.OperationsRulesMapper">
   <resultMap id="BaseResultMap" type="com.example.craily.po.OperationsRules">
     <constructor>
-      <arg column="jobno" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="operationsno" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="job_no" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="operations_no" javaType="java.lang.String" jdbcType="VARCHAR" />
     </constructor>
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -66,7 +66,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    jobno, operationsno
+    job_no, operations_no
   </sql>
   <select id="selectByExample" parameterType="com.example.craily.po.OperationsRulesExample" resultMap="BaseResultMap">
     select
@@ -89,25 +89,25 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.example.craily.po.OperationsRules">
-    insert into operations_rules (jobno, operationsno)
-    values (#{jobno,jdbcType=VARCHAR}, #{operationsno,jdbcType=VARCHAR})
+    insert into operations_rules (job_no, operations_no)
+    values (#{jobNo,jdbcType=VARCHAR}, #{operationsNo,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.example.craily.po.OperationsRules">
     insert into operations_rules
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="jobno != null">
-        jobno,
+      <if test="jobNo != null">
+        job_no,
       </if>
-      <if test="operationsno != null">
-        operationsno,
+      <if test="operationsNo != null">
+        operations_no,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="jobno != null">
-        #{jobno,jdbcType=VARCHAR},
+      <if test="jobNo != null">
+        #{jobNo,jdbcType=VARCHAR},
       </if>
-      <if test="operationsno != null">
-        #{operationsno,jdbcType=VARCHAR},
+      <if test="operationsNo != null">
+        #{operationsNo,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -120,11 +120,11 @@
   <update id="updateByExampleSelective" parameterType="map">
     update operations_rules
     <set>
-      <if test="record.jobno != null">
-        jobno = #{record.jobno,jdbcType=VARCHAR},
+      <if test="record.jobNo != null">
+        job_no = #{record.jobNo,jdbcType=VARCHAR},
       </if>
-      <if test="record.operationsno != null">
-        operationsno = #{record.operationsno,jdbcType=VARCHAR},
+      <if test="record.operationsNo != null">
+        operations_no = #{record.operationsNo,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -133,8 +133,8 @@
   </update>
   <update id="updateByExample" parameterType="map">
     update operations_rules
-    set jobno = #{record.jobno,jdbcType=VARCHAR},
-      operationsno = #{record.operationsno,jdbcType=VARCHAR}
+    set job_no = #{record.jobNo,jdbcType=VARCHAR},
+      operations_no = #{record.operationsNo,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>

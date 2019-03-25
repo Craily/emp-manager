@@ -3,10 +3,10 @@
 <mapper namespace="com.example.craily.dao.OperationsMapper">
   <resultMap id="BaseResultMap" type="com.example.craily.po.Operations">
     <constructor>
-      <arg column="operationsno" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="operations_no" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="name" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="code" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="menuno" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="menu_no" javaType="java.lang.String" jdbcType="VARCHAR" />
     </constructor>
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -68,7 +68,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    operationsno, name, code, menuno
+    operations_no, name, code, menu_no
   </sql>
   <select id="selectByExample" parameterType="com.example.craily.po.OperationsExample" resultMap="BaseResultMap">
     select
@@ -91,16 +91,16 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.example.craily.po.Operations">
-    insert into operations (operationsno, name, code, 
-      menuno)
-    values (#{operationsno,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, 
-      #{menuno,jdbcType=VARCHAR})
+    insert into operations (operations_no, name, code, 
+      menu_no)
+    values (#{operationsNo,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, 
+      #{menuNo,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.example.craily.po.Operations">
     insert into operations
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="operationsno != null">
-        operationsno,
+      <if test="operationsNo != null">
+        operations_no,
       </if>
       <if test="name != null">
         name,
@@ -108,13 +108,13 @@
       <if test="code != null">
         code,
       </if>
-      <if test="menuno != null">
-        menuno,
+      <if test="menuNo != null">
+        menu_no,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="operationsno != null">
-        #{operationsno,jdbcType=VARCHAR},
+      <if test="operationsNo != null">
+        #{operationsNo,jdbcType=VARCHAR},
       </if>
       <if test="name != null">
         #{name,jdbcType=VARCHAR},
@@ -122,8 +122,8 @@
       <if test="code != null">
         #{code,jdbcType=VARCHAR},
       </if>
-      <if test="menuno != null">
-        #{menuno,jdbcType=VARCHAR},
+      <if test="menuNo != null">
+        #{menuNo,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -136,8 +136,8 @@
   <update id="updateByExampleSelective" parameterType="map">
     update operations
     <set>
-      <if test="record.operationsno != null">
-        operationsno = #{record.operationsno,jdbcType=VARCHAR},
+      <if test="record.operationsNo != null">
+        operations_no = #{record.operationsNo,jdbcType=VARCHAR},
       </if>
       <if test="record.name != null">
         name = #{record.name,jdbcType=VARCHAR},
@@ -145,8 +145,8 @@
       <if test="record.code != null">
         code = #{record.code,jdbcType=VARCHAR},
       </if>
-      <if test="record.menuno != null">
-        menuno = #{record.menuno,jdbcType=VARCHAR},
+      <if test="record.menuNo != null">
+        menu_no = #{record.menuNo,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -155,10 +155,10 @@
   </update>
   <update id="updateByExample" parameterType="map">
     update operations
-    set operationsno = #{record.operationsno,jdbcType=VARCHAR},
+    set operations_no = #{record.operationsNo,jdbcType=VARCHAR},
       name = #{record.name,jdbcType=VARCHAR},
       code = #{record.code,jdbcType=VARCHAR},
-      menuno = #{record.menuno,jdbcType=VARCHAR}
+      menu_no = #{record.menuNo,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>

@@ -104,213 +104,143 @@ public class MenuRulesExample {
             criteria.add(new Criterion(condition, value1, value2));
         }
 
-        public Criteria andJobnoIsNull() {
-            addCriterion("jobno is null");
+        public Criteria andJobNoIsNull() {
+            addCriterion("job_no is null");
             return (Criteria) this;
         }
 
-        public Criteria andJobnoIsNotNull() {
-            addCriterion("jobno is not null");
+        public Criteria andJobNoIsNotNull() {
+            addCriterion("job_no is not null");
             return (Criteria) this;
         }
 
-        public Criteria andJobnoEqualTo(String value) {
-            addCriterion("jobno =", value, "jobno");
+        public Criteria andJobNoEqualTo(String value) {
+            addCriterion("job_no =", value, "jobNo");
             return (Criteria) this;
         }
 
-        public Criteria andJobnoNotEqualTo(String value) {
-            addCriterion("jobno <>", value, "jobno");
+        public Criteria andJobNoNotEqualTo(String value) {
+            addCriterion("job_no <>", value, "jobNo");
             return (Criteria) this;
         }
 
-        public Criteria andJobnoGreaterThan(String value) {
-            addCriterion("jobno >", value, "jobno");
+        public Criteria andJobNoGreaterThan(String value) {
+            addCriterion("job_no >", value, "jobNo");
             return (Criteria) this;
         }
 
-        public Criteria andJobnoGreaterThanOrEqualTo(String value) {
-            addCriterion("jobno >=", value, "jobno");
+        public Criteria andJobNoGreaterThanOrEqualTo(String value) {
+            addCriterion("job_no >=", value, "jobNo");
             return (Criteria) this;
         }
 
-        public Criteria andJobnoLessThan(String value) {
-            addCriterion("jobno <", value, "jobno");
+        public Criteria andJobNoLessThan(String value) {
+            addCriterion("job_no <", value, "jobNo");
             return (Criteria) this;
         }
 
-        public Criteria andJobnoLessThanOrEqualTo(String value) {
-            addCriterion("jobno <=", value, "jobno");
+        public Criteria andJobNoLessThanOrEqualTo(String value) {
+            addCriterion("job_no <=", value, "jobNo");
             return (Criteria) this;
         }
 
-        public Criteria andJobnoLike(String value) {
-            addCriterion("jobno like", value, "jobno");
+        public Criteria andJobNoLike(String value) {
+            addCriterion("job_no like", value, "jobNo");
             return (Criteria) this;
         }
 
-        public Criteria andJobnoNotLike(String value) {
-            addCriterion("jobno not like", value, "jobno");
+        public Criteria andJobNoNotLike(String value) {
+            addCriterion("job_no not like", value, "jobNo");
             return (Criteria) this;
         }
 
-        public Criteria andJobnoIn(List<String> values) {
-            addCriterion("jobno in", values, "jobno");
+        public Criteria andJobNoIn(List<String> values) {
+            addCriterion("job_no in", values, "jobNo");
             return (Criteria) this;
         }
 
-        public Criteria andJobnoNotIn(List<String> values) {
-            addCriterion("jobno not in", values, "jobno");
+        public Criteria andJobNoNotIn(List<String> values) {
+            addCriterion("job_no not in", values, "jobNo");
             return (Criteria) this;
         }
 
-        public Criteria andJobnoBetween(String value1, String value2) {
-            addCriterion("jobno between", value1, value2, "jobno");
+        public Criteria andJobNoBetween(String value1, String value2) {
+            addCriterion("job_no between", value1, value2, "jobNo");
             return (Criteria) this;
         }
 
-        public Criteria andJobnoNotBetween(String value1, String value2) {
-            addCriterion("jobno not between", value1, value2, "jobno");
+        public Criteria andJobNoNotBetween(String value1, String value2) {
+            addCriterion("job_no not between", value1, value2, "jobNo");
             return (Criteria) this;
         }
 
-        public Criteria andMenunoIsNull() {
-            addCriterion("menuno is null");
+        public Criteria andMenuNoIsNull() {
+            addCriterion("menu_no is null");
             return (Criteria) this;
         }
 
-        public Criteria andMenunoIsNotNull() {
-            addCriterion("menuno is not null");
+        public Criteria andMenuNoIsNotNull() {
+            addCriterion("menu_no is not null");
             return (Criteria) this;
         }
 
-        public Criteria andMenunoEqualTo(String value) {
-            addCriterion("menuno =", value, "menuno");
+        public Criteria andMenuNoEqualTo(String value) {
+            addCriterion("menu_no =", value, "menuNo");
             return (Criteria) this;
         }
 
-        public Criteria andMenunoNotEqualTo(String value) {
-            addCriterion("menuno <>", value, "menuno");
+        public Criteria andMenuNoNotEqualTo(String value) {
+            addCriterion("menu_no <>", value, "menuNo");
             return (Criteria) this;
         }
 
-        public Criteria andMenunoGreaterThan(String value) {
-            addCriterion("menuno >", value, "menuno");
+        public Criteria andMenuNoGreaterThan(String value) {
+            addCriterion("menu_no >", value, "menuNo");
             return (Criteria) this;
         }
 
-        public Criteria andMenunoGreaterThanOrEqualTo(String value) {
-            addCriterion("menuno >=", value, "menuno");
+        public Criteria andMenuNoGreaterThanOrEqualTo(String value) {
+            addCriterion("menu_no >=", value, "menuNo");
             return (Criteria) this;
         }
 
-        public Criteria andMenunoLessThan(String value) {
-            addCriterion("menuno <", value, "menuno");
+        public Criteria andMenuNoLessThan(String value) {
+            addCriterion("menu_no <", value, "menuNo");
             return (Criteria) this;
         }
 
-        public Criteria andMenunoLessThanOrEqualTo(String value) {
-            addCriterion("menuno <=", value, "menuno");
+        public Criteria andMenuNoLessThanOrEqualTo(String value) {
+            addCriterion("menu_no <=", value, "menuNo");
             return (Criteria) this;
         }
 
-        public Criteria andMenunoLike(String value) {
-            addCriterion("menuno like", value, "menuno");
+        public Criteria andMenuNoLike(String value) {
+            addCriterion("menu_no like", value, "menuNo");
             return (Criteria) this;
         }
 
-        public Criteria andMenunoNotLike(String value) {
-            addCriterion("menuno not like", value, "menuno");
+        public Criteria andMenuNoNotLike(String value) {
+            addCriterion("menu_no not like", value, "menuNo");
             return (Criteria) this;
         }
 
-        public Criteria andMenunoIn(List<String> values) {
-            addCriterion("menuno in", values, "menuno");
+        public Criteria andMenuNoIn(List<String> values) {
+            addCriterion("menu_no in", values, "menuNo");
             return (Criteria) this;
         }
 
-        public Criteria andMenunoNotIn(List<String> values) {
-            addCriterion("menuno not in", values, "menuno");
+        public Criteria andMenuNoNotIn(List<String> values) {
+            addCriterion("menu_no not in", values, "menuNo");
             return (Criteria) this;
         }
 
-        public Criteria andMenunoBetween(String value1, String value2) {
-            addCriterion("menuno between", value1, value2, "menuno");
+        public Criteria andMenuNoBetween(String value1, String value2) {
+            addCriterion("menu_no between", value1, value2, "menuNo");
             return (Criteria) this;
         }
 
-        public Criteria andMenunoNotBetween(String value1, String value2) {
-            addCriterion("menuno not between", value1, value2, "menuno");
-            return (Criteria) this;
-        }
-
-        public Criteria andOpenrulesIsNull() {
-            addCriterion("openrules is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andOpenrulesIsNotNull() {
-            addCriterion("openrules is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andOpenrulesEqualTo(String value) {
-            addCriterion("openrules =", value, "openrules");
-            return (Criteria) this;
-        }
-
-        public Criteria andOpenrulesNotEqualTo(String value) {
-            addCriterion("openrules <>", value, "openrules");
-            return (Criteria) this;
-        }
-
-        public Criteria andOpenrulesGreaterThan(String value) {
-            addCriterion("openrules >", value, "openrules");
-            return (Criteria) this;
-        }
-
-        public Criteria andOpenrulesGreaterThanOrEqualTo(String value) {
-            addCriterion("openrules >=", value, "openrules");
-            return (Criteria) this;
-        }
-
-        public Criteria andOpenrulesLessThan(String value) {
-            addCriterion("openrules <", value, "openrules");
-            return (Criteria) this;
-        }
-
-        public Criteria andOpenrulesLessThanOrEqualTo(String value) {
-            addCriterion("openrules <=", value, "openrules");
-            return (Criteria) this;
-        }
-
-        public Criteria andOpenrulesLike(String value) {
-            addCriterion("openrules like", value, "openrules");
-            return (Criteria) this;
-        }
-
-        public Criteria andOpenrulesNotLike(String value) {
-            addCriterion("openrules not like", value, "openrules");
-            return (Criteria) this;
-        }
-
-        public Criteria andOpenrulesIn(List<String> values) {
-            addCriterion("openrules in", values, "openrules");
-            return (Criteria) this;
-        }
-
-        public Criteria andOpenrulesNotIn(List<String> values) {
-            addCriterion("openrules not in", values, "openrules");
-            return (Criteria) this;
-        }
-
-        public Criteria andOpenrulesBetween(String value1, String value2) {
-            addCriterion("openrules between", value1, value2, "openrules");
-            return (Criteria) this;
-        }
-
-        public Criteria andOpenrulesNotBetween(String value1, String value2) {
-            addCriterion("openrules not between", value1, value2, "openrules");
+        public Criteria andMenuNoNotBetween(String value1, String value2) {
+            addCriterion("menu_no not between", value1, value2, "menuNo");
             return (Criteria) this;
         }
     }

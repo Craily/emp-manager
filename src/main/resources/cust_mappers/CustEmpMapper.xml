@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.craily.cust_dao.CustEmpMapper">
+
+	<select id="queryEmp" resultType="java.util.Map">
+		select
+			e.emp_no,
+			e.`name` as emp_name,
+			e.sex,
+			e.mobile_phone,
+			e.birthday,
+			d.`name` as dept_name,
+			j.`name` as job_name
+		from
+			emp e
+		left join
+			dept d
+		on
+			e.dept_no = d.dept_no
+		left join
+			job j
+		on e.job_no = j.job_no
+		where
+			1 = 1
+		<if test="emp.empNo != null and emp.empNo != ''">
+		and e.emp_no like concat('%', #{emp.empNo}, '%')
+		</if>
+		<if test="emp.deptNo != null and emp.deptNo != ''">
+		and e.dept_no = #{emp.deptNo}
+		</if>	
+		<if test="emp.name != null and emp.name != ''">
+		and e.`name` like concat('%', #{emp.name}, '%')
+		</if>
+		order by j.`level`, e.emp_no
+	</select>
+</mapper>

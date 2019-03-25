@@ -1,12 +1,12 @@
 package com.example.craily.po;
 
 public class Dept {
-    private String deptno;
+    private String deptNo;
 
     private String name;
 
-    public Dept(String deptno, String name) {
-        this.deptno = deptno;
+    public Dept(String deptNo, String name) {
+        this.deptNo = deptNo;
         this.name = name;
     }
 
@@ -14,12 +14,12 @@ public class Dept {
         super();
     }
 
-    public String getDeptno() {
-        return deptno;
+    public String getDeptNo() {
+        return deptNo;
     }
 
-    public void setDeptno(String deptno) {
-        this.deptno = deptno == null ? null : deptno.trim();
+    public void setDeptNo(String deptNo) {
+        this.deptNo = deptNo == null ? null : deptNo.trim();
     }
 
     public String getName() {

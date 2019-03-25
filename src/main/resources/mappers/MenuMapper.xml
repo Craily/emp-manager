@@ -7,6 +7,7 @@
       <arg column="name" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="url" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="parentmenurulesno" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="open_rules" javaType="java.lang.String" jdbcType="VARCHAR" />
     </constructor>
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -68,7 +69,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    menuno, name, url, parentmenurulesno
+    menuno, name, url, parentmenurulesno, open_rules
   </sql>
   <select id="selectByExample" parameterType="com.example.craily.po.MenuExample" resultMap="BaseResultMap">
     select
@@ -92,9 +93,9 @@
   </delete>
   <insert id="insert" parameterType="com.example.craily.po.Menu">
     insert into menu (menuno, name, url, 
-      parentmenurulesno)
+      parentmenurulesno, open_rules)
     values (#{menuno,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, 
-      #{parentmenurulesno,jdbcType=VARCHAR})
+      #{parentmenurulesno,jdbcType=VARCHAR}, #{openRules,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.example.craily.po.Menu">
     insert into menu
@@ -111,6 +112,9 @@
       <if test="parentmenurulesno != null">
         parentmenurulesno,
       </if>
+      <if test="openRules != null">
+        open_rules,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="menuno != null">
@@ -124,6 +128,9 @@
       </if>
       <if test="parentmenurulesno != null">
         #{parentmenurulesno,jdbcType=VARCHAR},
+      </if>
+      <if test="openRules != null">
+        #{openRules,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -148,6 +155,9 @@
       <if test="record.parentmenurulesno != null">
         parentmenurulesno = #{record.parentmenurulesno,jdbcType=VARCHAR},
       </if>
+      <if test="record.openRules != null">
+        open_rules = #{record.openRules,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -158,7 +168,8 @@
     set menuno = #{record.menuno,jdbcType=VARCHAR},
       name = #{record.name,jdbcType=VARCHAR},
       url = #{record.url,jdbcType=VARCHAR},
-      parentmenurulesno = #{record.parentmenurulesno,jdbcType=VARCHAR}
+      parentmenurulesno = #{record.parentmenurulesno,jdbcType=VARCHAR},
+      open_rules = #{record.openRules,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>

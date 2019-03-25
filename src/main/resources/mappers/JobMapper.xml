@@ -3,10 +3,10 @@
 <mapper namespace="com.example.craily.dao.JobMapper">
   <resultMap id="BaseResultMap" type="com.example.craily.po.Job">
     <constructor>
-      <arg column="jobno" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="job_no" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="name" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="level" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="deptno" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="dept_no" javaType="java.lang.String" jdbcType="VARCHAR" />
     </constructor>
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -68,7 +68,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    jobno, name, level, deptno
+    job_no, name, level, dept_no
   </sql>
   <select id="selectByExample" parameterType="com.example.craily.po.JobExample" resultMap="BaseResultMap">
     select
@@ -91,16 +91,16 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.example.craily.po.Job">
-    insert into job (jobno, name, level, 
-      deptno)
-    values (#{jobno,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{level,jdbcType=VARCHAR}, 
-      #{deptno,jdbcType=VARCHAR})
+    insert into job (job_no, name, level, 
+      dept_no)
+    values (#{jobNo,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{level,jdbcType=VARCHAR}, 
+      #{deptNo,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.example.craily.po.Job">
     insert into job
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="jobno != null">
-        jobno,
+      <if test="jobNo != null">
+        job_no,
       </if>
       <if test="name != null">
         name,
@@ -108,13 +108,13 @@
       <if test="level != null">
         level,
       </if>
-      <if test="deptno != null">
-        deptno,
+      <if test="deptNo != null">
+        dept_no,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="jobno != null">
-        #{jobno,jdbcType=VARCHAR},
+      <if test="jobNo != null">
+        #{jobNo,jdbcType=VARCHAR},
       </if>
       <if test="name != null">
         #{name,jdbcType=VARCHAR},
@@ -122,8 +122,8 @@
       <if test="level != null">
         #{level,jdbcType=VARCHAR},
       </if>
-      <if test="deptno != null">
-        #{deptno,jdbcType=VARCHAR},
+      <if test="deptNo != null">
+        #{deptNo,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -136,8 +136,8 @@
   <update id="updateByExampleSelective" parameterType="map">
     update job
     <set>
-      <if test="record.jobno != null">
-        jobno = #{record.jobno,jdbcType=VARCHAR},
+      <if test="record.jobNo != null">
+        job_no = #{record.jobNo,jdbcType=VARCHAR},
       </if>
       <if test="record.name != null">
         name = #{record.name,jdbcType=VARCHAR},
@@ -145,8 +145,8 @@
       <if test="record.level != null">
         level = #{record.level,jdbcType=VARCHAR},
       </if>
-      <if test="record.deptno != null">
-        deptno = #{record.deptno,jdbcType=VARCHAR},
+      <if test="record.deptNo != null">
+        dept_no = #{record.deptNo,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -155,10 +155,10 @@
   </update>
   <update id="updateByExample" parameterType="map">
     update job
-    set jobno = #{record.jobno,jdbcType=VARCHAR},
+    set job_no = #{record.jobNo,jdbcType=VARCHAR},
       name = #{record.name,jdbcType=VARCHAR},
       level = #{record.level,jdbcType=VARCHAR},
-      deptno = #{record.deptno,jdbcType=VARCHAR}
+      dept_no = #{record.deptNo,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>

@@ -383,6 +383,76 @@ public class MenuExample {
             addCriterion("parentmenurulesno not between", value1, value2, "parentmenurulesno");
             return (Criteria) this;
         }
+
+        public Criteria andOpenRulesIsNull() {
+            addCriterion("open_rules is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andOpenRulesIsNotNull() {
+            addCriterion("open_rules is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andOpenRulesEqualTo(String value) {
+            addCriterion("open_rules =", value, "openRules");
+            return (Criteria) this;
+        }
+
+        public Criteria andOpenRulesNotEqualTo(String value) {
+            addCriterion("open_rules <>", value, "openRules");
+            return (Criteria) this;
+        }
+
+        public Criteria andOpenRulesGreaterThan(String value) {
+            addCriterion("open_rules >", value, "openRules");
+            return (Criteria) this;
+        }
+
+        public Criteria andOpenRulesGreaterThanOrEqualTo(String value) {
+            addCriterion("open_rules >=", value, "openRules");
+            return (Criteria) this;
+        }
+
+        public Criteria andOpenRulesLessThan(String value) {
+            addCriterion("open_rules <", value, "openRules");
+            return (Criteria) this;
+        }
+
+        public Criteria andOpenRulesLessThanOrEqualTo(String value) {
+            addCriterion("open_rules <=", value, "openRules");
+            return (Criteria) this;
+        }
+
+        public Criteria andOpenRulesLike(String value) {
+            addCriterion("open_rules like", value, "openRules");
+            return (Criteria) this;
+        }
+
+        public Criteria andOpenRulesNotLike(String value) {
+            addCriterion("open_rules not like", value, "openRules");
+            return (Criteria) this;
+        }
+
+        public Criteria andOpenRulesIn(List<String> values) {
+            addCriterion("open_rules in", values, "openRules");
+            return (Criteria) this;
+        }
+
+        public Criteria andOpenRulesNotIn(List<String> values) {
+            addCriterion("open_rules not in", values, "openRules");
+            return (Criteria) this;
+        }
+
+        public Criteria andOpenRulesBetween(String value1, String value2) {
+            addCriterion("open_rules between", value1, value2, "openRules");
+            return (Criteria) this;
+        }
+
+        public Criteria andOpenRulesNotBetween(String value1, String value2) {
+            addCriterion("open_rules not between", value1, value2, "openRules");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

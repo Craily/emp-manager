@@ -1,32 +1,32 @@
 package com.example.craily.po;
 
 public class OperationsRules {
-    private String jobno;
+    private String jobNo;
 
-    private String operationsno;
+    private String operationsNo;
 
-    public OperationsRules(String jobno, String operationsno) {
-        this.jobno = jobno;
-        this.operationsno = operationsno;
+    public OperationsRules(String jobNo, String operationsNo) {
+        this.jobNo = jobNo;
+        this.operationsNo = operationsNo;
     }
 
     public OperationsRules() {
         super();
     }
 
-    public String getJobno() {
-        return jobno;
+    public String getJobNo() {
+        return jobNo;
     }
 
-    public void setJobno(String jobno) {
-        this.jobno = jobno == null ? null : jobno.trim();
+    public void setJobNo(String jobNo) {
+        this.jobNo = jobNo == null ? null : jobNo.trim();
     }
 
-    public String getOperationsno() {
-        return operationsno;
+    public String getOperationsNo() {
+        return operationsNo;
     }
 
-    public void setOperationsno(String operationsno) {
-        this.operationsno = operationsno == null ? null : operationsno.trim();
+    public void setOperationsNo(String operationsNo) {
+        this.operationsNo = operationsNo == null ? null : operationsNo.trim();
     }
 }

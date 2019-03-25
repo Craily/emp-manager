@@ -5,24 +5,47 @@ import java.util.Map;
 
 /**
  * 前台响应类
+ * 
  * @author Craily
  *
  */
-public class ResponeUtil implements Serializable {
+public class ResponeUtil<T> implements Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -8984673570183635867L;
-	private int status = 0;//状态0失败；1成功
-	private String msg;//信息
-	private Map<String, ?> data;//数据
+	private int status = 0;// 状态0失败；1成功
+	private String msg;// 信息
+	private T data;// 数据
 
 	/**
 	 * 
 	 */
 	public ResponeUtil() {
-		// TODO Auto-generated constructor stub
+		super();
+	}
+
+	/**
+	 * @param status
+	 * @param msg
+	 */
+	public ResponeUtil(int status, String msg) {
+		super();
+		this.status = status;
+		this.msg = msg;
+	}
+
+	/**
+	 * @param status
+	 * @param msg
+	 * @param data
+	 */
+	public ResponeUtil(int status, String msg, T data) {
+		super();
+		this.status = status;
+		this.msg = msg;
+		this.data = data;
 	}
 
 	public int getStatus() {
@@ -41,11 +64,11 @@ public class ResponeUtil implements Serializable {
 		this.msg = msg;
 	}
 
-	public Map<String, ?> getData() {
+	public T getData() {
 		return data;
 	}
 
-	public void setData(Map<String, ?> data) {
+	public void setData(T data) {
 		this.data = data;
 	}
 

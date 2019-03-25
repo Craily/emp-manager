@@ -104,73 +104,73 @@ public class DeptExample {
             criteria.add(new Criterion(condition, value1, value2));
         }
 
-        public Criteria andDeptnoIsNull() {
-            addCriterion("deptno is null");
+        public Criteria andDeptNoIsNull() {
+            addCriterion("dept_no is null");
             return (Criteria) this;
         }
 
-        public Criteria andDeptnoIsNotNull() {
-            addCriterion("deptno is not null");
+        public Criteria andDeptNoIsNotNull() {
+            addCriterion("dept_no is not null");
             return (Criteria) this;
         }
 
-        public Criteria andDeptnoEqualTo(String value) {
-            addCriterion("deptno =", value, "deptno");
+        public Criteria andDeptNoEqualTo(String value) {
+            addCriterion("dept_no =", value, "deptNo");
             return (Criteria) this;
         }
 
-        public Criteria andDeptnoNotEqualTo(String value) {
-            addCriterion("deptno <>", value, "deptno");
+        public Criteria andDeptNoNotEqualTo(String value) {
+            addCriterion("dept_no <>", value, "deptNo");
             return (Criteria) this;
         }
 
-        public Criteria andDeptnoGreaterThan(String value) {
-            addCriterion("deptno >", value, "deptno");
+        public Criteria andDeptNoGreaterThan(String value) {
+            addCriterion("dept_no >", value, "deptNo");
             return (Criteria) this;
         }
 
-        public Criteria andDeptnoGreaterThanOrEqualTo(String value) {
-            addCriterion("deptno >=", value, "deptno");
+        public Criteria andDeptNoGreaterThanOrEqualTo(String value) {
+            addCriterion("dept_no >=", value, "deptNo");
             return (Criteria) this;
         }
 
-        public Criteria andDeptnoLessThan(String value) {
-            addCriterion("deptno <", value, "deptno");
+        public Criteria andDeptNoLessThan(String value) {
+            addCriterion("dept_no <", value, "deptNo");
             return (Criteria) this;
         }
 
-        public Criteria andDeptnoLessThanOrEqualTo(String value) {
-            addCriterion("deptno <=", value, "deptno");
+        public Criteria andDeptNoLessThanOrEqualTo(String value) {
+            addCriterion("dept_no <=", value, "deptNo");
             return (Criteria) this;
         }
 
-        public Criteria andDeptnoLike(String value) {
-            addCriterion("deptno like", value, "deptno");
+        public Criteria andDeptNoLike(String value) {
+            addCriterion("dept_no like", value, "deptNo");
             return (Criteria) this;
         }
 
-        public Criteria andDeptnoNotLike(String value) {
-            addCriterion("deptno not like", value, "deptno");
+        public Criteria andDeptNoNotLike(String value) {
+            addCriterion("dept_no not like", value, "deptNo");
             return (Criteria) this;
         }
 
-        public Criteria andDeptnoIn(List<String> values) {
-            addCriterion("deptno in", values, "deptno");
+        public Criteria andDeptNoIn(List<String> values) {
+            addCriterion("dept_no in", values, "deptNo");
             return (Criteria) this;
         }
 
-        public Criteria andDeptnoNotIn(List<String> values) {
-            addCriterion("deptno not in", values, "deptno");
+        public Criteria andDeptNoNotIn(List<String> values) {
+            addCriterion("dept_no not in", values, "deptNo");
             return (Criteria) this;
         }
 
-        public Criteria andDeptnoBetween(String value1, String value2) {
-            addCriterion("deptno between", value1, value2, "deptno");
+        public Criteria andDeptNoBetween(String value1, String value2) {
+            addCriterion("dept_no between", value1, value2, "deptNo");
             return (Criteria) this;
         }
 
-        public Criteria andDeptnoNotBetween(String value1, String value2) {
-            addCriterion("deptno not between", value1, value2, "deptno");
+        public Criteria andDeptNoNotBetween(String value1, String value2) {
+            addCriterion("dept_no not between", value1, value2, "deptNo");
             return (Criteria) this;
         }
 

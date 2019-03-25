@@ -3,9 +3,8 @@
 <mapper namespace="com.example.craily.dao.MenuRulesMapper">
   <resultMap id="BaseResultMap" type="com.example.craily.po.MenuRules">
     <constructor>
-      <arg column="jobno" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="menuno" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="openrules" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="job_no" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="menu_no" javaType="java.lang.String" jdbcType="VARCHAR" />
     </constructor>
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -67,7 +66,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    jobno, menuno, openrules
+    job_no, menu_no
   </sql>
   <select id="selectByExample" parameterType="com.example.craily.po.MenuRulesExample" resultMap="BaseResultMap">
     select
@@ -90,33 +89,25 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.example.craily.po.MenuRules">
-    insert into menu_rules (jobno, menuno, openrules
-      )
-    values (#{jobno,jdbcType=VARCHAR}, #{menuno,jdbcType=VARCHAR}, #{openrules,jdbcType=VARCHAR}
-      )
+    insert into menu_rules (job_no, menu_no)
+    values (#{jobNo,jdbcType=VARCHAR}, #{menuNo,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.example.craily.po.MenuRules">
     insert into menu_rules
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="jobno != null">
-        jobno,
+      <if test="jobNo != null">
+        job_no,
       </if>
-      <if test="menuno != null">
-        menuno,
-      </if>
-      <if test="openrules != null">
-        openrules,
+      <if test="menuNo != null">
+        menu_no,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="jobno != null">
-        #{jobno,jdbcType=VARCHAR},
+      <if test="jobNo != null">
+        #{jobNo,jdbcType=VARCHAR},
       </if>
-      <if test="menuno != null">
-        #{menuno,jdbcType=VARCHAR},
-      </if>
-      <if test="openrules != null">
-        #{openrules,jdbcType=VARCHAR},
+      <if test="menuNo != null">
+        #{menuNo,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -129,14 +120,11 @@
   <update id="updateByExampleSelective" parameterType="map">
     update menu_rules
     <set>
-      <if test="record.jobno != null">
-        jobno = #{record.jobno,jdbcType=VARCHAR},
+      <if test="record.jobNo != null">
+        job_no = #{record.jobNo,jdbcType=VARCHAR},
       </if>
-      <if test="record.menuno != null">
-        menuno = #{record.menuno,jdbcType=VARCHAR},
-      </if>
-      <if test="record.openrules != null">
-        openrules = #{record.openrules,jdbcType=VARCHAR},
+      <if test="record.menuNo != null">
+        menu_no = #{record.menuNo,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -145,9 +133,8 @@
   </update>
   <update id="updateByExample" parameterType="map">
     update menu_rules
-    set jobno = #{record.jobno,jdbcType=VARCHAR},
-      menuno = #{record.menuno,jdbcType=VARCHAR},
-      openrules = #{record.openrules,jdbcType=VARCHAR}
+    set job_no = #{record.jobNo,jdbcType=VARCHAR},
+      menu_no = #{record.menuNo,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>

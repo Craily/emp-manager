@@ -1,31 +1,31 @@
 package com.example.craily.po;
 
 public class Operations {
-    private String operationsno;
+    private String operationsNo;
 
     private String name;
 
     private String code;
 
-    private String menuno;
+    private String menuNo;
 
-    public Operations(String operationsno, String name, String code, String menuno) {
-        this.operationsno = operationsno;
+    public Operations(String operationsNo, String name, String code, String menuNo) {
+        this.operationsNo = operationsNo;
         this.name = name;
         this.code = code;
-        this.menuno = menuno;
+        this.menuNo = menuNo;
     }
 
     public Operations() {
         super();
     }
 
-    public String getOperationsno() {
-        return operationsno;
+    public String getOperationsNo() {
+        return operationsNo;
     }
 
-    public void setOperationsno(String operationsno) {
-        this.operationsno = operationsno == null ? null : operationsno.trim();
+    public void setOperationsNo(String operationsNo) {
+        this.operationsNo = operationsNo == null ? null : operationsNo.trim();
     }
 
     public String getName() {
@@ -44,11 +44,11 @@ public class Operations {
         this.code = code == null ? null : code.trim();
     }
 
-    public String getMenuno() {
-        return menuno;
+    public String getMenuNo() {
+        return menuNo;
     }
 
-    public void setMenuno(String menuno) {
-        this.menuno = menuno == null ? null : menuno.trim();
+    public void setMenuNo(String menuNo) {
+        this.menuNo = menuNo == null ? null : menuNo.trim();
     }
 }
