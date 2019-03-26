@@ -7,9 +7,11 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.craily.cust_dao.CustEmpMapper;
-import com.example.craily.po.Emp;
-import com.example.craily.service.EmpService;
+import com.example.craily.dao.DeptMapper;
+import com.example.craily.po.Dept;
+import com.example.craily.po.DeptExample;
+import com.example.craily.po.DeptExample.Criteria;
+import com.example.craily.service.DeptService;
 import com.example.craily.utils.ConstantUtil;
 import com.example.craily.utils.PageUtil;
 import com.example.craily.utils.ResponeUtil;
@@ -17,28 +19,36 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
 @Service
-public class EmpServiceImpl implements EmpService {
-	
-	@Autowired
-	private CustEmpMapper custEmpMapper;
+public class DeptServiceImpl implements DeptService {
 
+	@Autowired
+	private DeptMapper deptMapper;
+	
 	@Override
-	public ResponeUtil<Map<String, Object>> queryEmp(PageUtil pageUtil, Emp emp) {
-		// TODO 根据条件查询员工
+	public ResponeUtil<Map<String, Object>> queryDept(PageUtil pageUtil, Dept dept) {
+		// TODO 根据条件查询部门
 		ResponeUtil<Map<String, Object>> responeUtil = null;
 		try {
 			PageHelper.startPage(pageUtil.getPage(), pageUtil.getLimit());
 			
-			List<Map<String, Object>> empList = custEmpMapper.queryEmp(emp);
-			if(empList == null || empList.isEmpty()) {
+			DeptExample deptExample = new DeptExample();
+			Criteria criteria = deptExample.createCriteria();
+			if(dept.getDeptNo() != null && !"".equals(dept.getDeptNo())) {
+				criteria.andDeptNoLike("%" + dept.getDeptNo() + "%");
+			}
+			if(dept.getName() != null && !"".equals(dept.getName())) {
+				criteria.andNameLike("%" + dept.getName() + "%");
+			}
+			List<Dept> deptList = deptMapper.selectByExample(deptExample);
+			if(deptList == null || deptList.isEmpty()) {
 				responeUtil = new ResponeUtil<>(ConstantUtil.Fail.getCode(), ConstantUtil.empty.getMsg());
 			}else {
 				//获取分页信息
-				PageInfo<Map<String, Object>> pageInfo = new PageInfo<>(empList);
+				PageInfo<Dept> pageInfo = new PageInfo<>(deptList);
 				
 				Map<String, Object> resultMap = new HashMap<String, Object>();
 				resultMap.put("count", pageInfo.getTotal());
-				resultMap.put("list", empList);
+				resultMap.put("list", deptList);
 				responeUtil = new ResponeUtil<Map<String, Object>>(ConstantUtil.Success.getCode(), ConstantUtil.Success.getMsg(), resultMap);
 			}
 		} catch (Exception e) {

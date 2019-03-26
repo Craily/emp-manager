@@ -2,24 +2,17 @@ layui.use('table', function() {
 	var table = layui.table;
 	
 	table.render({
-		elem: '#empTable',
-		url: '/emp/queryEmp',
+		elem: '#deptTable',
+		url: '/dept/queryDept',
 		method: 'post',
 		toolbar: 'default',
 		defaultToolbar: [],
 		height: 'full-210',
 		cols: [[
 			{type: 'checkbox', fixed: 'left'},
-			{field: 'emp_no', title: '编号', minWidth: 80, fixed: 'left'},
-			{field: 'emp_name', title: '姓名', minWidth: 120},
-			{field: 'sex', title: '性别', minWidth: 80, templet: function(d){
-				return d.sex == "1" ? "男" : d.sex == "0" ? "女" : "-";
-			}},
-			{field: 'mobile_phone', title: '电话', minWidth: 150},
-			{field: 'birthday', title: '生日', minWidth: 150},
-			{field: 'dept_name', title: '部门', minWidth: 150},
-			{field: 'job_name', title: '职位', minWidth: 100},
-			{fixed: 'right', width: 165, align:'center', toolbar: '#empTableBar'}
+			{field: 'deptNo', title: '编号', minWidth: 80, fixed: 'left'},
+			{field: 'name', title: '名称', minWidth: 120},
+			{fixed: 'right', width: 165, align:'center', toolbar: '#deptTableBar'}
 		]],
 		page: {
 			limit: 10,
@@ -40,7 +33,7 @@ layui.use('table', function() {
 	});
 	
 	//监听头工具栏事件
-	table.on('toolbar(empTable)', function(obj) {
+	table.on('toolbar(deptTable)', function(obj) {
 		var checkStatus = table.checkStatus(obj.config.id);
 		var data = checkStatus.data;
 	    switch(obj.event){
