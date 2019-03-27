@@ -7,7 +7,7 @@ layui.use('table', function() {
 		method: 'post',
 		toolbar: 'default',
 		defaultToolbar: [],
-		height: 'full-210',
+		height: 'full-140',
 		cols: [[
 			{type: 'checkbox', fixed: 'left'},
 			{field: 'deptNo', title: '编号', minWidth: 80, fixed: 'left'},

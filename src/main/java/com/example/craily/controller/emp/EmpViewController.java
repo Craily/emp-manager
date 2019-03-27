@@ -11,4 +11,9 @@ public class EmpViewController {
 	public String index() {
 		return "emp/index";
 	}
+	
+	@RequestMapping("/done")
+	public String done() {
+		return "emp/done";
+	}
 }

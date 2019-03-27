@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <title>员工管理系统</title>
-<link rel="stylesheet" href="/layui/css/layui.css">
 <link rel="stylesheet" href="/css/index/index.css">
+<link rel="stylesheet" href="/layui/css/layui.css">
 <script type="text/javascript" src="/layui/layui.js"></script>
 <script type="text/javascript" src="/js/index/index.js"></script>
 </head>
@@ -36,6 +36,9 @@
 				<!-- 左侧导航区域（可配合layui已有的垂直导航） -->
 				<ul class="layui-nav layui-nav-tree" lay-filter="navigation">
 					<li class="layui-nav-item layui-nav-itemed">
+						<a class="" href="javascript:;" url="111" id="index" title="首页">首页</a>
+					</li>
+					<li class="layui-nav-item layui-nav-itemed">
 						<a class="" href="javascript:;">员工管理</a>
 						<dl class="layui-nav-child">
 							<dd>
@@ -56,17 +59,15 @@
 		</div>
 
 		<div class="layui-body">
-		
-			<div class="layui-tab" lay-filter="tabpages">
-				<ul class="layui-tab-title"></ul>
-		  		<div class="layui-tab-content"></div>
+			<div class="layui-body-title">
+				<span class="layui-breadcrumb">
+				</span>
 			</div>
-		
-		</div>
-
-		<div class="layui-footer">
-			<!-- 底部固定区域 -->
-			© layui.com - 底部固定区域
+			<div class="layui-body-title-fix"></div>
+			
+			<div class="layui-body-content">
+				
+			</div>
 		</div>
 	</div>
 </body>

@@ -1,2 +1,6 @@
 @charset "UTF-8";
 
+.layui-layout-admin .layui-body{bottom: 0px !important;}
+.layui-body{padding: 0px 10px 10px;}
+.layui-body-title{line-height: 40px;position: fixed;background-color: #fff;width: 100%;}
+.layui-body-title-fix{height: 40px;}

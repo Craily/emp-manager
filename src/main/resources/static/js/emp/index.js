@@ -1,13 +1,16 @@
 layui.use('table', function() {
 	var table = layui.table;
 	
+	var $ = layui.$ // 由于layer弹层依赖jQuery，所以可以直接得到
+	, layer = layui.layer;
+	
 	table.render({
 		elem: '#empTable',
 		url: '/emp/queryEmp',
 		method: 'post',
 		toolbar: 'default',
 		defaultToolbar: [],
-		height: 'full-210',
+		height: 'full-140',
 		cols: [[
 			{type: 'checkbox', fixed: 'left'},
 			{field: 'emp_no', title: '编号', minWidth: 80, fixed: 'left'},
@@ -45,7 +48,14 @@ layui.use('table', function() {
 		var data = checkStatus.data;
 	    switch(obj.event){
 	    	case 'add':
-	    		layer.msg('添加');
+	    		layer.open({
+    				type: 2,
+    				title: '员工操作',
+    				maxmin: true,
+					shadeClose: true, //点击遮罩关闭层
+					area : ['800px' , '520px'],
+					content: '/emp/done'
+	    		});
     		break;
 	    	case 'update':
 		        if(data.length === 0){

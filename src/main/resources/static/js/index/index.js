@@ -4,8 +4,9 @@ layui.use('element', function() {
 
 	var $ = layui.$ // 由于layer弹层依赖jQuery，所以可以直接得到
 	, layer = layui.layer;
-
+	
 	element.on('nav(navigation)', function(elem) {
+		
 		$.ajaxSetup({
 			cache : false
 		});
@@ -13,23 +14,23 @@ layui.use('element', function() {
 		var url = elem.attr('url');
 		var tabTitle = elem.attr('title');
 		var tabId = elem.attr('id');
-
+		
 		if (url != "" && url != undefined) {
-			// 判断标签是否已存在
-			if ($('.layui-tab-title li[lay-id=' + tabId + ']').length == 0) {
-				// 请求内容
-				$.get(url, function(date) {
-					element.tabAdd('tabpages', {
-						title : tabTitle,
-						content : date,
-						id : tabId
-					});
-					
-					element.tabChange('tabpages', tabId);
-				});
+			//清空面包屑
+			$('.layui-breadcrumb').empty();
+			if(tabTitle == "首页"){
+				$('.layui-breadcrumb').append("<a href=''>首页</a>");
 			}else {
-				element.tabChange('tabpages', tabId);
+				var parentTitle = elem.parents('dl').siblings('a').text();
+				$('.layui-breadcrumb').append("<a href=''>首页</a>").append("<a href=''>" + parentTitle + "</a>").append("<a><cite>" + tabTitle + "</cite></a>");
 			}
+			//重新渲染面包屑
+			element.render('breadcrumb');
+			
+			//加载数据
+			$.get(url, function(date) {
+				$('.layui-body-content').html(date);
+			});
 		}
 	});
 
