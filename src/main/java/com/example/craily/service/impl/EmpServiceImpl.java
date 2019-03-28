@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.craily.cust_dao.CustEmpMapper;
+import com.example.craily.dao.EmpMapper;
+import com.example.craily.model.EmpBean;
 import com.example.craily.po.Emp;
 import com.example.craily.service.EmpService;
 import com.example.craily.utils.ConstantUtil;
@@ -21,6 +23,8 @@ public class EmpServiceImpl implements EmpService {
 	
 	@Autowired
 	private CustEmpMapper custEmpMapper;
+	@Autowired
+	private EmpMapper empMapper;
 
 	@Override
 	public ResponeUtil<Map<String, Object>> queryEmp(PageUtil pageUtil, Emp emp) {
@@ -41,6 +45,21 @@ public class EmpServiceImpl implements EmpService {
 				resultMap.put("list", empList);
 				responeUtil = new ResponeUtil<Map<String, Object>>(ConstantUtil.Success.getCode(), ConstantUtil.Success.getMsg(), resultMap);
 			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			responeUtil = new ResponeUtil<>(ConstantUtil.Fail.getCode(), e.getMessage());
+		}
+		return responeUtil;
+	}
+
+	@Override
+	public ResponeUtil<String> createEmp(EmpBean empBean) {
+		// TODO 创建员工
+		ResponeUtil<String> responeUtil = null;
+		try {
+			empBean.setPassword("111111");
+			empBean.setJobNo("3");
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 			responeUtil = new ResponeUtil<>(ConstantUtil.Fail.getCode(), e.getMessage());

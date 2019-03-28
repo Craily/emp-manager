@@ -10,7 +10,6 @@ layui.use('table', function() {
 		method: 'post',
 		toolbar: 'default',
 		defaultToolbar: [],
-		height: 'full-140',
 		cols: [[
 			{type: 'checkbox', fixed: 'left'},
 			{field: 'emp_no', title: '编号', minWidth: 80, fixed: 'left'},
@@ -52,9 +51,9 @@ layui.use('table', function() {
     				type: 2,
     				title: '员工操作',
     				maxmin: true,
-					shadeClose: true, //点击遮罩关闭层
-					area : ['800px' , '520px'],
-					content: '/emp/done'
+					shadeClose: true,
+					area : ['500px' , '450px'],
+					content: ['/emp/done', 'no']
 	    		});
     		break;
 	    	case 'update':
@@ -75,4 +74,7 @@ layui.use('table', function() {
 	        break;
 	    };
 	});
+	
+	
+	
 });

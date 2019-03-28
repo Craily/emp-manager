@@ -2,6 +2,7 @@ package com.example.craily.service;
 
 import java.util.Map;
 
+import com.example.craily.model.EmpBean;
 import com.example.craily.po.Emp;
 import com.example.craily.utils.PageUtil;
 import com.example.craily.utils.ResponeUtil;
@@ -15,4 +16,12 @@ public interface EmpService {
 	 * @return
 	 */
 	ResponeUtil<Map<String, Object>> queryEmp(PageUtil pageUtil, Emp emp);
+	
+	/**
+	 * 创建员工
+	 * 默认创建一般员工
+	 * @param empBean
+	 * @return
+	 */
+	ResponeUtil<String> createEmp(EmpBean empBean);
 }
