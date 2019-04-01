@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.craily.model.EmpBean;
 import com.example.craily.po.Emp;
 import com.example.craily.service.EmpService;
+import com.example.craily.utils.ConstantUtil;
 import com.example.craily.utils.PageUtil;
 import com.example.craily.utils.ResponeUtil;
 
@@ -40,6 +41,12 @@ public class EmpRestController {
 	 */
 	@PostMapping(value="/createEmp", produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ResponeUtil<String> createEmp(EmpBean empBean) {
-		return empService.createEmp(empBean);
+		ResponeUtil<String> responeUtil = null;
+		try {
+			responeUtil = empService.createEmp(empBean);
+		} catch (Exception e) {
+			responeUtil = new ResponeUtil<String>(ConstantUtil.Fail.getCode(), ConstantUtil.Fail.getMsg(), e.getMessage());
+		}
+		return responeUtil;
 	}
 }
