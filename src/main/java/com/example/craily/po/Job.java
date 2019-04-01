@@ -7,13 +7,10 @@ public class Job {
 
     private String level;
 
-    private String deptNo;
-
-    public Job(String jobNo, String name, String level, String deptNo) {
+    public Job(String jobNo, String name, String level) {
         this.jobNo = jobNo;
         this.name = name;
         this.level = level;
-        this.deptNo = deptNo;
     }
 
     public Job() {
@@ -42,13 +39,5 @@ public class Job {
 
     public void setLevel(String level) {
         this.level = level == null ? null : level.trim();
-    }
-
-    public String getDeptNo() {
-        return deptNo;
-    }
-
-    public void setDeptNo(String deptNo) {
-        this.deptNo = deptNo == null ? null : deptNo.trim();
     }
 }

@@ -5,9 +5,12 @@ public class Dept {
 
     private String name;
 
-    public Dept(String deptNo, String name) {
+    private String address;
+
+    public Dept(String deptNo, String name, String address) {
         this.deptNo = deptNo;
         this.name = name;
+        this.address = address;
     }
 
     public Dept() {
@@ -28,5 +31,13 @@ public class Dept {
 
     public void setName(String name) {
         this.name = name == null ? null : name.trim();
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address == null ? null : address.trim();
     }
 }

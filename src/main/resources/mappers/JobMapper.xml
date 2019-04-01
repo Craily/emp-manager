@@ -6,7 +6,6 @@
       <arg column="job_no" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="name" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="level" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="dept_no" javaType="java.lang.String" jdbcType="VARCHAR" />
     </constructor>
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -68,7 +67,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    job_no, name, level, dept_no
+    job_no, name, level
   </sql>
   <select id="selectByExample" parameterType="com.example.craily.po.JobExample" resultMap="BaseResultMap">
     select
@@ -91,10 +90,10 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.example.craily.po.Job">
-    insert into job (job_no, name, level, 
-      dept_no)
-    values (#{jobNo,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{level,jdbcType=VARCHAR}, 
-      #{deptNo,jdbcType=VARCHAR})
+    insert into job (job_no, name, level
+      )
+    values (#{jobNo,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{level,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.example.craily.po.Job">
     insert into job
@@ -108,9 +107,6 @@
       <if test="level != null">
         level,
       </if>
-      <if test="deptNo != null">
-        dept_no,
-      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="jobNo != null">
@@ -121,9 +117,6 @@
       </if>
       <if test="level != null">
         #{level,jdbcType=VARCHAR},
-      </if>
-      <if test="deptNo != null">
-        #{deptNo,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -145,9 +138,6 @@
       <if test="record.level != null">
         level = #{record.level,jdbcType=VARCHAR},
       </if>
-      <if test="record.deptNo != null">
-        dept_no = #{record.deptNo,jdbcType=VARCHAR},
-      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -157,8 +147,7 @@
     update job
     set job_no = #{record.jobNo,jdbcType=VARCHAR},
       name = #{record.name,jdbcType=VARCHAR},
-      level = #{record.level,jdbcType=VARCHAR},
-      dept_no = #{record.deptNo,jdbcType=VARCHAR}
+      level = #{record.level,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>

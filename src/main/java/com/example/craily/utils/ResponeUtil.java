@@ -1,7 +1,6 @@
 package com.example.craily.utils;
 
 import java.io.Serializable;
-import java.util.Map;
 
 /**
  * 前台响应类

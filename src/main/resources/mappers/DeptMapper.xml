@@ -5,6 +5,7 @@
     <constructor>
       <arg column="dept_no" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="name" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="address" javaType="java.lang.String" jdbcType="VARCHAR" />
     </constructor>
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -66,7 +67,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    dept_no, name
+    dept_no, name, address
   </sql>
   <select id="selectByExample" parameterType="com.example.craily.po.DeptExample" resultMap="BaseResultMap">
     select
@@ -89,8 +90,10 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.example.craily.po.Dept">
-    insert into dept (dept_no, name)
-    values (#{deptNo,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR})
+    insert into dept (dept_no, name, address
+      )
+    values (#{deptNo,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.example.craily.po.Dept">
     insert into dept
@@ -101,6 +104,9 @@
       <if test="name != null">
         name,
       </if>
+      <if test="address != null">
+        address,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="deptNo != null">
@@ -108,6 +114,9 @@
       </if>
       <if test="name != null">
         #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null">
+        #{address,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -126,6 +135,9 @@
       <if test="record.name != null">
         name = #{record.name,jdbcType=VARCHAR},
       </if>
+      <if test="record.address != null">
+        address = #{record.address,jdbcType=VARCHAR},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -134,7 +146,8 @@
   <update id="updateByExample" parameterType="map">
     update dept
     set dept_no = #{record.deptNo,jdbcType=VARCHAR},
-      name = #{record.name,jdbcType=VARCHAR}
+      name = #{record.name,jdbcType=VARCHAR},
+      address = #{record.address,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>

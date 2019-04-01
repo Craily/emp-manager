@@ -7,11 +7,11 @@ layui.use('table', function() {
 		method: 'post',
 		toolbar: 'default',
 		defaultToolbar: [],
-		height: 'full-140',
 		cols: [[
 			{type: 'checkbox', fixed: 'left'},
-			{field: 'deptNo', title: '编号', minWidth: 80, fixed: 'left'},
+			{field: 'deptNo', title: '编号', minWidth: 80, hide: true},
 			{field: 'name', title: '名称', minWidth: 120},
+			{field: 'address', title: '地址', minWidth: 120},
 			{fixed: 'right', width: 165, align:'center', toolbar: '#deptTableBar'}
 		]],
 		page: {
@@ -23,12 +23,15 @@ layui.use('table', function() {
 			statusCode: 1
 		},
 		parseData: function(d) {
-			return {
-				"code": d.status,
-				"msg": d.msg,
-				"count": d.data.count,
-				"data": d.data.list
-			};
+			var ret = {
+					"code": d.status,
+					"msg": d.msg
+			}
+			if(d.data != null){
+				ret.count = d.data.count;
+				ret.data = d.data.list;
+			}
+			return ret;
 		}
 	});
 	
@@ -38,24 +41,39 @@ layui.use('table', function() {
 		var data = checkStatus.data;
 	    switch(obj.event){
 	    	case 'add':
-	    		layer.msg('添加');
+	    		deptDone();
     		break;
 	    	case 'update':
 		        if(data.length === 0){
-		          layer.msg('请选择一行');
+		        	layer.msg('请选择一行');
 		        } else if(data.length > 1){
-		          layer.msg('只能同时编辑一个');
+		        	layer.msg('只能同时编辑一个');
 		        } else {
-		          layer.alert('编辑 [id]：'+ checkStatus.data[0].id);
+		        	deptDone(checkStatus.data[0].id);
 		        }
 	        break;
 	    	case 'delete':
 		        if(data.length === 0){
-		          layer.msg('请选择一行');
+		        	
 		        } else {
-		          layer.msg('删除');
+		        	
 		        }
 	        break;
 	    };
 	});
 });
+
+function deptDone(deptNo){
+	var url = '/dept/done';
+	if(deptNo != null && deptNo != undefined && deptNo != ""){
+		url = '/dept/done?deptNo=' + deptNo;
+	}
+	layer.open({
+		type: 2,
+		title: '部门操作',
+		maxmin: true,
+		shadeClose: true,
+		area : ['500px' , '450px'],
+		content: [url, 'no']
+	});
+}
