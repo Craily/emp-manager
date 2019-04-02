@@ -15,4 +15,11 @@ public interface DeptService {
 	 * @return
 	 */
 	ResponeUtil<Map<String, Object>> queryDept(PageUtil pageUtil, Dept dept);
+	
+	/**
+	 * 创建部门
+	 * @param dept
+	 * @return
+	 */
+	ResponeUtil<String> createDept(Dept dept);
 }

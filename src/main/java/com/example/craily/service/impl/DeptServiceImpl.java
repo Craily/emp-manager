@@ -15,6 +15,7 @@ import com.example.craily.service.DeptService;
 import com.example.craily.utils.ConstantUtil;
 import com.example.craily.utils.PageUtil;
 import com.example.craily.utils.ResponeUtil;
+import com.example.craily.utils.UUIDUtil;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 
@@ -54,6 +55,25 @@ public class DeptServiceImpl implements DeptService {
 		} catch (Exception e) {
 			e.printStackTrace();
 			responeUtil = new ResponeUtil<>(ConstantUtil.Fail.getCode(), e.getMessage());
+		}
+		return responeUtil;
+	}
+
+	@Override
+	public ResponeUtil<String> createDept(Dept dept) {
+		// TODO 创建部门
+		ResponeUtil<String> responeUtil = null;
+		try {
+			dept.setDeptNo(UUIDUtil.get32UUID());
+			int index = deptMapper.insert(dept);
+			if(index == 0) {
+				responeUtil = new ResponeUtil<String>(ConstantUtil.Fail.getCode(), ConstantUtil.Fail.getMsg());
+			}else {
+				responeUtil = new ResponeUtil<String>(ConstantUtil.Success.getCode(), ConstantUtil.Success.getMsg(), ConstantUtil.Success.getMsg());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
 		}
 		return responeUtil;
 	}

@@ -73,7 +73,7 @@ function deptDone(deptNo){
 		title: '部门操作',
 		maxmin: true,
 		shadeClose: true,
-		area : ['500px' , '450px'],
+		area : ['500px' , '350px'],
 		content: [url, 'no']
 	});
 }

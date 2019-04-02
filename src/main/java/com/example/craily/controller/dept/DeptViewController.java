@@ -11,4 +11,8 @@ public class DeptViewController {
 	public String index() {
 		return "dept/index";
 	}
+	@RequestMapping("/done")
+	public String done() {
+		return "dept/done";
+	}
 }
