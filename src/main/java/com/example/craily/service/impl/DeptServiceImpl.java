@@ -30,12 +30,14 @@ public class DeptServiceImpl implements DeptService {
 		// TODO 根据条件查询部门
 		ResponeUtil<Map<String, Object>> responeUtil = null;
 		try {
-			PageHelper.startPage(pageUtil.getPage(), pageUtil.getLimit());
+			if(pageUtil.getPage() != 0) {
+				PageHelper.startPage(pageUtil.getPage(), pageUtil.getLimit());
+			}
 			
 			DeptExample deptExample = new DeptExample();
 			Criteria criteria = deptExample.createCriteria();
 			if(dept.getDeptNo() != null && !"".equals(dept.getDeptNo())) {
-				criteria.andDeptNoLike("%" + dept.getDeptNo() + "%");
+				criteria.andDeptNoEqualTo(dept.getDeptNo());
 			}
 			if(dept.getName() != null && !"".equals(dept.getName())) {
 				criteria.andNameLike("%" + dept.getName() + "%");
@@ -44,11 +46,12 @@ public class DeptServiceImpl implements DeptService {
 			if(deptList == null || deptList.isEmpty()) {
 				responeUtil = new ResponeUtil<>(ConstantUtil.Fail.getCode(), ConstantUtil.empty.getMsg());
 			}else {
-				//获取分页信息
-				PageInfo<Dept> pageInfo = new PageInfo<>(deptList);
-				
 				Map<String, Object> resultMap = new HashMap<String, Object>();
-				resultMap.put("count", pageInfo.getTotal());
+				if(pageUtil.getPage() != 0) {
+					//获取分页信息
+					PageInfo<Dept> pageInfo = new PageInfo<>(deptList);
+					resultMap.put("count", pageInfo.getTotal());
+				}
 				resultMap.put("list", deptList);
 				responeUtil = new ResponeUtil<Map<String, Object>>(ConstantUtil.Success.getCode(), ConstantUtil.Success.getMsg(), resultMap);
 			}
@@ -66,6 +69,27 @@ public class DeptServiceImpl implements DeptService {
 		try {
 			dept.setDeptNo(UUIDUtil.get32UUID());
 			int index = deptMapper.insert(dept);
+			if(index == 0) {
+				responeUtil = new ResponeUtil<String>(ConstantUtil.Fail.getCode(), ConstantUtil.Fail.getMsg());
+			}else {
+				responeUtil = new ResponeUtil<String>(ConstantUtil.Success.getCode(), ConstantUtil.Success.getMsg(), ConstantUtil.Success.getMsg());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+		return responeUtil;
+	}
+
+	@Override
+	public ResponeUtil<String> editDept(Dept dept) {
+		// TODO 编辑部门
+		ResponeUtil<String> responeUtil = null;
+		try {
+			DeptExample deptExample = new DeptExample();
+			deptExample.createCriteria().andDeptNoEqualTo(dept.getDeptNo());
+			dept.setDeptNo(null);
+			int index = deptMapper.updateByExampleSelective(dept, deptExample);
 			if(index == 0) {
 				responeUtil = new ResponeUtil<String>(ConstantUtil.Fail.getCode(), ConstantUtil.Fail.getMsg());
 			}else {

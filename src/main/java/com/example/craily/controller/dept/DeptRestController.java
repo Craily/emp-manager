@@ -40,4 +40,17 @@ public class DeptRestController {
 		}
 		return responeUtil;
 	}
+	
+	@ApiOperation(value="编辑部门", httpMethod="POST", response=ResponeUtil.class, produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@PostMapping(value="/editDept", produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public ResponeUtil<String> editDept(Dept dept) {
+		ResponeUtil<String> responeUtil = null;
+		try {
+			responeUtil = deptService.editDept(dept);
+		} catch (Exception e) {
+			responeUtil = new ResponeUtil<>(ConstantUtil.Fail.getCode(), e.getMessage());
+		}
+		return responeUtil;
+	}
+	
 }

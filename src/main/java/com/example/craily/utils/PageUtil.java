@@ -14,8 +14,8 @@ public class PageUtil implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 78442880675518769L;
-	private int page = 1;//当前页
-	private int limit = 10;//条数
+	private int page;//当前页
+	private int limit;//条数
 
 	/**
 	 * 

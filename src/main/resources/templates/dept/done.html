@@ -10,7 +10,8 @@
 <script type="text/javascript" src="/js/dept/done.js"></script>
 </head>
 <body style="padding: 30px 50px 0px 0px;">
-	<form class="layui-form" action="">
+	<form class="layui-form" action="" lay-filter="dept-form">
+		<input type="hidden" id="deptNo" name="deptNo" th:value="${deptNo}">
 		<div class="layui-form-item">
 			<label class="layui-form-label">名称</label>
 			<div class="layui-input-block">

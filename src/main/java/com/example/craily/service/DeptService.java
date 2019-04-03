@@ -22,4 +22,12 @@ public interface DeptService {
 	 * @return
 	 */
 	ResponeUtil<String> createDept(Dept dept);
+	
+	/**
+	 * 编辑部门
+	 * @param dept
+	 * @return
+	 */
+	ResponeUtil<String> editDept(Dept dept);
+	
 }

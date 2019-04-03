@@ -49,7 +49,7 @@ layui.use('table', function() {
 		        } else if(data.length > 1){
 		        	layer.msg('只能同时编辑一个');
 		        } else {
-		        	deptDone(checkStatus.data[0].id);
+		        	deptDone(checkStatus.data[0].deptNo);
 		        }
 	        break;
 	    	case 'delete':
