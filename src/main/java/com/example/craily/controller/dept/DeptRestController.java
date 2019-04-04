@@ -53,4 +53,16 @@ public class DeptRestController {
 		return responeUtil;
 	}
 	
+	@ApiOperation(value="删除部门", httpMethod="POST", response=ResponeUtil.class, produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@PostMapping(value="/delDept", produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public ResponeUtil<String> delDept(String[] deptNos) {
+		ResponeUtil<String> responeUtil = null;
+		try {
+			responeUtil = deptService.delDept(deptNos);
+		} catch (Exception e) {
+			responeUtil = new ResponeUtil<>(ConstantUtil.Fail.getCode(), e.getMessage());
+		}
+		return responeUtil;
+	}
+	
 }

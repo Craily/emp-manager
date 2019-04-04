@@ -15,7 +15,7 @@ layui.use('form', function() {
 				    "address": dept.address
 				});
 			}else {
-				layer.msg(date.msg, {icon: 6, anim: 6}); 
+				layer.msg(date.msg, {icon: 5, anim: 6}); 
 			}
 		});
 	}
@@ -35,7 +35,7 @@ layui.use('form', function() {
 				// 表格重载
 				parent.layui.table.reload('deptTable',{page:{curr:1}});
 			}else {
-				layer.msg(date.msg, {icon: 6, anim: 6}); 
+				layer.msg(date.msg, {icon: 5, anim: 6}); 
 			}
 		});
 		return false;

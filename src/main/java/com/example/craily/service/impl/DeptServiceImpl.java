@@ -1,5 +1,7 @@
 package com.example.craily.service.impl;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -90,6 +92,26 @@ public class DeptServiceImpl implements DeptService {
 			deptExample.createCriteria().andDeptNoEqualTo(dept.getDeptNo());
 			dept.setDeptNo(null);
 			int index = deptMapper.updateByExampleSelective(dept, deptExample);
+			if(index == 0) {
+				responeUtil = new ResponeUtil<String>(ConstantUtil.Fail.getCode(), ConstantUtil.Fail.getMsg());
+			}else {
+				responeUtil = new ResponeUtil<String>(ConstantUtil.Success.getCode(), ConstantUtil.Success.getMsg(), ConstantUtil.Success.getMsg());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+		return responeUtil;
+	}
+
+	@Override
+	public ResponeUtil<String> delDept(String[] deptNos) {
+		// TODO 删除部门
+		ResponeUtil<String> responeUtil = null;
+		try {
+			DeptExample deptExample = new DeptExample();
+			deptExample.createCriteria().andDeptNoIn(Arrays.asList(deptNos));
+			int index = deptMapper.deleteByExample(deptExample);
 			if(index == 0) {
 				responeUtil = new ResponeUtil<String>(ConstantUtil.Fail.getCode(), ConstantUtil.Fail.getMsg());
 			}else {

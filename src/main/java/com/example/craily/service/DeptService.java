@@ -30,4 +30,10 @@ public interface DeptService {
 	 */
 	ResponeUtil<String> editDept(Dept dept);
 	
+	/**
+	 * 删除部门
+	 * @param dept
+	 * @return
+	 */
+	ResponeUtil<String> delDept(String[] deptNos);
 }
