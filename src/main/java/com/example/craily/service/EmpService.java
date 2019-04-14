@@ -24,4 +24,19 @@ public interface EmpService {
 	 * @return
 	 */
 	ResponeUtil<String> createEmp(EmpBean empBean);
+	
+	/**
+	 * 编辑员工
+	 * @param empBean
+	 * @return
+	 */
+	ResponeUtil<String> editEmp(EmpBean empBean);
+	
+	/**
+	 * 删除员工
+	 * @param empNos
+	 * @return
+	 */
+	ResponeUtil<String> delEmp(String[] empNos);
+	
 }

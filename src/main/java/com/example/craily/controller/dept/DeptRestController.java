@@ -36,7 +36,7 @@ public class DeptRestController {
 		try {
 			responeUtil = deptService.createDept(dept);
 		} catch (Exception e) {
-			responeUtil = new ResponeUtil<>(ConstantUtil.Fail.getCode(), e.getMessage());
+			responeUtil = new ResponeUtil<>(ConstantUtil.Error.getCode(), ConstantUtil.Error.getMsg() + e.getMessage());
 		}
 		return responeUtil;
 	}
@@ -48,7 +48,7 @@ public class DeptRestController {
 		try {
 			responeUtil = deptService.editDept(dept);
 		} catch (Exception e) {
-			responeUtil = new ResponeUtil<>(ConstantUtil.Fail.getCode(), e.getMessage());
+			responeUtil = new ResponeUtil<>(ConstantUtil.Error.getCode(), ConstantUtil.Error.getMsg() + e.getMessage());
 		}
 		return responeUtil;
 	}
@@ -60,7 +60,7 @@ public class DeptRestController {
 		try {
 			responeUtil = deptService.delDept(deptNos);
 		} catch (Exception e) {
-			responeUtil = new ResponeUtil<>(ConstantUtil.Fail.getCode(), e.getMessage());
+			responeUtil = new ResponeUtil<>(ConstantUtil.Error.getCode(), ConstantUtil.Error.getMsg() + e.getMessage());
 		}
 		return responeUtil;
 	}

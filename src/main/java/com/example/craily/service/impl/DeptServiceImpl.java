@@ -30,7 +30,10 @@ public class DeptServiceImpl implements DeptService {
 	@Override
 	public ResponeUtil<Map<String, Object>> queryDept(PageUtil pageUtil, Dept dept) {
 		// TODO 根据条件查询部门
-		ResponeUtil<Map<String, Object>> responeUtil = null;
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("count", 0);
+		resultMap.put("list", new ArrayList<>());
+		ResponeUtil<Map<String, Object>> responeUtil = new ResponeUtil<Map<String,Object>>(ConstantUtil.Success.getCode(), ConstantUtil.Success.getMsg(), resultMap);
 		try {
 			if(pageUtil.getPage() != 0) {
 				PageHelper.startPage(pageUtil.getPage(), pageUtil.getLimit());
@@ -46,20 +49,20 @@ public class DeptServiceImpl implements DeptService {
 			}
 			List<Dept> deptList = deptMapper.selectByExample(deptExample);
 			if(deptList == null || deptList.isEmpty()) {
-				responeUtil = new ResponeUtil<>(ConstantUtil.Fail.getCode(), ConstantUtil.empty.getMsg());
+				responeUtil.setStatus(ConstantUtil.Empty.getCode());
+				responeUtil.setMsg(ConstantUtil.Empty.getMsg());
 			}else {
-				Map<String, Object> resultMap = new HashMap<String, Object>();
 				if(pageUtil.getPage() != 0) {
 					//获取分页信息
 					PageInfo<Dept> pageInfo = new PageInfo<>(deptList);
 					resultMap.put("count", pageInfo.getTotal());
 				}
 				resultMap.put("list", deptList);
-				responeUtil = new ResponeUtil<Map<String, Object>>(ConstantUtil.Success.getCode(), ConstantUtil.Success.getMsg(), resultMap);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-			responeUtil = new ResponeUtil<>(ConstantUtil.Fail.getCode(), e.getMessage());
+			responeUtil.setStatus(ConstantUtil.Error.getCode());
+			responeUtil.setMsg(ConstantUtil.Error.getMsg() + e.getMessage());
 		}
 		return responeUtil;
 	}

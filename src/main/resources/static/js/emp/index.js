@@ -4,7 +4,7 @@ layui.use('table', function() {
 	var $ = layui.$ // 由于layer弹层依赖jQuery，所以可以直接得到
 	, layer = layui.layer;
 	
-	table.render({
+	var tableIns = table.render({
 		elem: '#empTable',
 		id: 'empTable',
 		url: '/emp/queryEmp',
@@ -60,10 +60,12 @@ layui.use('table', function() {
 		        }
 	        break;
 	    	case 'delete':
-		        if(data.length === 0){
-		          layer.msg('请选择一行');
+	    		if(data.length === 0){
+		        	layer.msg('请至少选择一行', {icon: 5, anim: 6});
 		        } else {
-		          layer.msg('删除');
+		        	layer.confirm('是否确认删除所选数据？', {icon: 3, title:'提示'}, function(index){
+		        		delEmp(index, data, $, tableIns);
+		        	});
 		        }
 	        break;
 	    };
@@ -103,5 +105,39 @@ function empDone(empNo){
 		shadeClose: true,
 		area : ['500px' , '450px'],
 		content: [url, 'no']
+	});
+}
+
+function delEmp(index, data, $, tableIns){
+
+	var empNoArray = [];
+	for (let emp of data) {
+		empNoArray.push(emp.emp_no);
+	}
+	
+	$.ajax({
+		url: '/emp/delEmp',
+		type: 'POST',
+		async: false,
+		traditional: true,
+		dataType: 'json',
+		data: {
+			empNos: empNoArray
+		},
+		success: function(data){
+			if(data.status === 1){
+				var empName = $('#empName');
+				//执行重载
+				tableIns.reload('empTable', {
+			        page: {
+			        	curr: 1 //重新从第 1 页开始
+			        },
+			        where: {
+			        	name: empName.val()
+			        }
+			    });
+		    	layer.close(index);
+			}
+		}
 	});
 }

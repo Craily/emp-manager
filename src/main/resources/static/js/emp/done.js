@@ -7,11 +7,37 @@ layui.use(['form', 'laydate'], function() {
 	laydate.render({
 		elem: '#birthday'
 	});
+	
+	//初始化部门下拉框
+	initDeptSelected($, form);
+	
+	var empNo = $('#empNo').val();
+	if(empNo != null && empNo != undefined && empNo != ""){
+		$.post('/emp/queryEmp', {empNo: empNo}, function(d){
+			if(d.status === 1){
+				var emp = d.data.list[0];
+				//初始化表单数据
+				form.val('emp-form', {
+				    "name": emp.emp_name,
+				    "sex": emp.sex,
+				    "mobilePhone": emp.mobile_phone,
+				    "birthday": emp.birthday,
+				    "deptNo": emp.dept_no
+				});
+			}else {
+				layer.msg(date.msg, {icon: 5, anim: 6}); 
+			}
+		});
+	}
 
 	//监听提交
 	form.on('submit(done)', function(data) {
-		$.post('/emp/createEmp', data.field, function(){
-			if(date.status === 1){
+		var url = "/emp/createEmp";
+		if(empNo != null && empNo != undefined && empNo != ""){
+			url = "/emp/editEmp";
+		}
+		$.post(url, data.field, function(d){
+			if(d.status === 1){
 				//关闭窗口
 				var index = parent.layer.getFrameIndex(window.name);
 				parent.layer.close(index);
@@ -19,9 +45,31 @@ layui.use(['form', 'laydate'], function() {
 				// 表格重载
 				parent.layui.table.reload('empTable',{page:{curr:1}});
 			}else {
-				layer.msg(date.msg, {icon: 6, anim: 6}); 
+				layer.msg(d.msg, {icon: 6, anim: 6}); 
 			}
 		});
 		return false;
 	});
 });
+
+function initDeptSelected($, form){
+	$('#deptNo').empty();
+	$.ajax({
+		url: '/dept/queryDept',
+		type: 'POST',
+		async: false,
+		traditional: true,
+		dataType: 'json',
+		success: function(d){
+			if(d.status === 1) {
+				var list = d.data.list;
+				var options = "<option value=\"\">请选择</option>";
+				for (var i = 0; i < list.length; i++) {
+					options += option = "<option value=\"" + list[i].deptNo + "\">" + list[i].name + "</option>";
+				}
+				$('#deptNo').append(options);
+				form.render('select');
+			}
+		}
+	});
+}

@@ -2,7 +2,7 @@ package com.example.craily.utils;
 
 public enum ConstantUtil {
 
-	Fail(0, "失败"), Success(1, "成功"), empty(2, "结果为空"), error(3, "异常");
+	Fail(0, "失败"), Success(1, "成功"), Empty(2, "结果为空"), Error(3, "异常");
 
 	private int code;
 	private String msg;

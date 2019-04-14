@@ -8,8 +8,10 @@
 			e.`name` as emp_name,
 			e.sex,
 			e.mobile_phone,
-			e.birthday,
+			DATE_FORMAT(e.birthday,'%Y-%m-%d') as birthday,
+			d.dept_no,
 			d.`name` as dept_name,
+			j.job_no,
 			j.`name` as job_name
 		from
 			emp e
@@ -23,7 +25,7 @@
 		where
 			1 = 1
 		<if test="emp.empNo != null and emp.empNo != ''">
-		and e.emp_no like concat('%', #{emp.empNo}, '%')
+		and e.emp_no = #{emp.empNo}
 		</if>
 		<if test="emp.deptNo != null and emp.deptNo != ''">
 		and e.dept_no = #{emp.deptNo}
