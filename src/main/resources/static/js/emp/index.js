@@ -15,14 +15,14 @@ layui.use('table', function() {
 			{type: 'checkbox', fixed: 'left'},
 			{field: 'emp_no', title: '编号', minWidth: 80, hide: true},
 			{field: 'emp_name', title: '姓名', minWidth: 120, fixed: 'left'},
-			{field: 'sex', title: '性别', minWidth: 80, templet: function(d){
+			{field: 'sex', title: '性别', align:'center', width: 80, templet: function(d){
 				return d.sex == "1" ? "男" : d.sex == "0" ? "女" : "-";
 			}},
-			{field: 'mobile_phone', title: '电话', minWidth: 150},
-			{field: 'birthday', title: '生日', minWidth: 150},
+			{field: 'mobile_phone', title: '电话', width: 120},
+			{field: 'birthday', title: '生日', align:'center', width: 120},
 			{field: 'dept_name', title: '部门', minWidth: 150},
-			{field: 'job_name', title: '职位', minWidth: 100},
-			{fixed: 'right', width: 165, align:'center', toolbar: '#empTableBar'}
+			{field: 'job_name', title: '职位', align:'center', width: 90},
+			{fixed: 'right', align:'center', width: 270, toolbar: '#empTableBar'}
 		]],
 		page: {
 			limit: 10,
