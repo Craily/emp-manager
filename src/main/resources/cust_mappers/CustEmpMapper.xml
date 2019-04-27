@@ -8,7 +8,7 @@
 			e.`name` as emp_name,
 			e.sex,
 			e.mobile_phone,
-			DATE_FORMAT(e.birthday,'%Y-%m-%d') as birthday,
+			DATE_FORMAT(e.join_time,'%Y-%m-%d') as join_time,
 			d.dept_no,
 			d.`name` as dept_name,
 			j.job_no,
@@ -34,5 +34,31 @@
 		and e.`name` like concat('%', #{emp.name}, '%')
 		</if>
 		order by j.`level`, e.emp_no
+	</select>
+	
+	<select id="queryEmpJobMenuByJobNo" resultType="java.util.Map">
+		select
+			m.`name`
+		from
+			job_menu jm
+		left join
+			menu m
+		on 
+			jm.menu_no = m.menu_no
+		where
+			jm.job_no = #{jobNo}
+	</select>
+	
+	<select id="queryEmpOperationsByJobNo" resultType="java.util.Map">
+		select
+			o.`name`
+		from
+			operations o
+		left join
+			job_menu jm
+		on
+			o.menu_no = jm.menu_no
+		where
+			jm.job_no = #{jobNo}
 	</select>
 </mapper>

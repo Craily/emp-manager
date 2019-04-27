@@ -5,7 +5,6 @@
     <constructor>
       <arg column="operations_no" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="name" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="code" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="menu_no" javaType="java.lang.String" jdbcType="VARCHAR" />
     </constructor>
   </resultMap>
@@ -68,7 +67,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    operations_no, name, code, menu_no
+    operations_no, name, menu_no
   </sql>
   <select id="selectByExample" parameterType="com.example.craily.po.OperationsExample" resultMap="BaseResultMap">
     select
@@ -91,10 +90,10 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.example.craily.po.Operations">
-    insert into operations (operations_no, name, code, 
-      menu_no)
-    values (#{operationsNo,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{code,jdbcType=VARCHAR}, 
-      #{menuNo,jdbcType=VARCHAR})
+    insert into operations (operations_no, name, menu_no
+      )
+    values (#{operationsNo,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{menuNo,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.example.craily.po.Operations">
     insert into operations
@@ -104,9 +103,6 @@
       </if>
       <if test="name != null">
         name,
-      </if>
-      <if test="code != null">
-        code,
       </if>
       <if test="menuNo != null">
         menu_no,
@@ -118,9 +114,6 @@
       </if>
       <if test="name != null">
         #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="code != null">
-        #{code,jdbcType=VARCHAR},
       </if>
       <if test="menuNo != null">
         #{menuNo,jdbcType=VARCHAR},
@@ -142,9 +135,6 @@
       <if test="record.name != null">
         name = #{record.name,jdbcType=VARCHAR},
       </if>
-      <if test="record.code != null">
-        code = #{record.code,jdbcType=VARCHAR},
-      </if>
       <if test="record.menuNo != null">
         menu_no = #{record.menuNo,jdbcType=VARCHAR},
       </if>
@@ -157,7 +147,6 @@
     update operations
     set operations_no = #{record.operationsNo,jdbcType=VARCHAR},
       name = #{record.name,jdbcType=VARCHAR},
-      code = #{record.code,jdbcType=VARCHAR},
       menu_no = #{record.menuNo,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />

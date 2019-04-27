@@ -1,34 +1,34 @@
 package com.example.craily.po;
 
 public class Menu {
-    private String menuno;
+    private String menuNo;
 
     private String name;
 
     private String url;
 
-    private String parentmenurulesno;
+    private String parentMenuNo;
 
-    private String openRules;
+    private String openAllOperations;
 
-    public Menu(String menuno, String name, String url, String parentmenurulesno, String openRules) {
-        this.menuno = menuno;
+    public Menu(String menuNo, String name, String url, String parentMenuNo, String openAllOperations) {
+        this.menuNo = menuNo;
         this.name = name;
         this.url = url;
-        this.parentmenurulesno = parentmenurulesno;
-        this.openRules = openRules;
+        this.parentMenuNo = parentMenuNo;
+        this.openAllOperations = openAllOperations;
     }
 
     public Menu() {
         super();
     }
 
-    public String getMenuno() {
-        return menuno;
+    public String getMenuNo() {
+        return menuNo;
     }
 
-    public void setMenuno(String menuno) {
-        this.menuno = menuno == null ? null : menuno.trim();
+    public void setMenuNo(String menuNo) {
+        this.menuNo = menuNo == null ? null : menuNo.trim();
     }
 
     public String getName() {
@@ -47,19 +47,19 @@ public class Menu {
         this.url = url == null ? null : url.trim();
     }
 
-    public String getParentmenurulesno() {
-        return parentmenurulesno;
+    public String getParentMenuNo() {
+        return parentMenuNo;
     }
 
-    public void setParentmenurulesno(String parentmenurulesno) {
-        this.parentmenurulesno = parentmenurulesno == null ? null : parentmenurulesno.trim();
+    public void setParentMenuNo(String parentMenuNo) {
+        this.parentMenuNo = parentMenuNo == null ? null : parentMenuNo.trim();
     }
 
-    public String getOpenRules() {
-        return openRules;
+    public String getOpenAllOperations() {
+        return openAllOperations;
     }
 
-    public void setOpenRules(String openRules) {
-        this.openRules = openRules == null ? null : openRules.trim();
+    public void setOpenAllOperations(String openAllOperations) {
+        this.openAllOperations = openAllOperations == null ? null : openAllOperations.trim();
     }
 }

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="Thymeleaf" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -16,7 +16,8 @@
 			<ul class="layui-nav layui-layout-right">
 				<li class="layui-nav-item">
 					<a href="javascript:;">
-						<img src="http://t.cn/RCzsdCq" class="layui-nav-img"> 贤心
+						<img src="http://t.cn/RCzsdCq" class="layui-nav-img">
+						<shiro:principal property="loginName"/>
 					</a>
 					<dl class="layui-nav-child">
 						<dd>
@@ -27,7 +28,7 @@
 						</dd>
 					</dl>
 				</li>
-				<li class="layui-nav-item"><a href="">退了</a></li>
+				<li class="layui-nav-item"><a href="javascript:;" onclick="loginout();">退了</a></li>
 			</ul>
 		</div>
 

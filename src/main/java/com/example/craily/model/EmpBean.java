@@ -16,13 +16,15 @@ public class EmpBean implements Serializable {
 
 	private String name;
 
-	private Date birthday;
+	private Date joinTime;
 
 	private String sex;
 
 	private String mobilePhone;
 
 	private String deptNo;
+
+	private String loginName;
 
 	private String password;
 
@@ -51,12 +53,12 @@ public class EmpBean implements Serializable {
 		this.name = name;
 	}
 
-	public Date getBirthday() {
-		return birthday;
+	public Date getJoinTime() {
+		return joinTime;
 	}
 
-	public void setBirthday(String birthday) throws ParseException {
-		this.birthday = new SimpleDateFormat("yyyy-MM-dd").parse(birthday);
+	public void setJoinTime(String joinTime) throws ParseException {
+		this.joinTime = new SimpleDateFormat("yyyy-MM-dd").parse(joinTime);
 	}
 
 	public String getSex() {
@@ -81,6 +83,14 @@ public class EmpBean implements Serializable {
 
 	public void setDeptNo(String deptNo) {
 		this.deptNo = deptNo;
+	}
+
+	public String getLoginName() {
+		return loginName;
+	}
+
+	public void setLoginName(String loginName) {
+		this.loginName = loginName;
 	}
 
 	public String getPassword() {

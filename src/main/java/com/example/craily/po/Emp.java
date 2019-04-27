@@ -7,7 +7,7 @@ public class Emp {
 
     private String name;
 
-    private Date birthday;
+    private Date joinTime;
 
     private String sex;
 
@@ -15,17 +15,20 @@ public class Emp {
 
     private String deptNo;
 
+    private String loginName;
+
     private String password;
 
     private String jobNo;
 
-    public Emp(String empNo, String name, Date birthday, String sex, String mobilePhone, String deptNo, String password, String jobNo) {
+    public Emp(String empNo, String name, Date joinTime, String sex, String mobilePhone, String deptNo, String loginName, String password, String jobNo) {
         this.empNo = empNo;
         this.name = name;
-        this.birthday = birthday;
+        this.joinTime = joinTime;
         this.sex = sex;
         this.mobilePhone = mobilePhone;
         this.deptNo = deptNo;
+        this.loginName = loginName;
         this.password = password;
         this.jobNo = jobNo;
     }
@@ -50,12 +53,12 @@ public class Emp {
         this.name = name == null ? null : name.trim();
     }
 
-    public Date getBirthday() {
-        return birthday;
+    public Date getJoinTime() {
+        return joinTime;
     }
 
-    public void setBirthday(Date birthday) {
-        this.birthday = birthday;
+    public void setJoinTime(Date joinTime) {
+        this.joinTime = joinTime;
     }
 
     public String getSex() {
@@ -80,6 +83,14 @@ public class Emp {
 
     public void setDeptNo(String deptNo) {
         this.deptNo = deptNo == null ? null : deptNo.trim();
+    }
+
+    public String getLoginName() {
+        return loginName;
+    }
+
+    public void setLoginName(String loginName) {
+        this.loginName = loginName == null ? null : loginName.trim();
     }
 
     public String getPassword() {

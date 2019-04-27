@@ -16,4 +16,18 @@ public interface CustEmpMapper {
 	 */
  	List<Map<String, Object>> queryEmp(@Param("emp") Emp emp);
  	
+ 	/**
+ 	 * 根据职位查找菜单权限
+ 	 * @param jobNo
+ 	 * @return
+ 	 */
+ 	List<Map<String, Object>> queryEmpJobMenuByJobNo(@Param("jobNo") String jobNo);
+ 	
+ 	/**
+ 	 * 根据职位查找操作权限
+ 	 * @param jobNo
+ 	 * @return
+ 	 */
+ 	List<Map<String, Object>> queryEmpOperationsByFlag(@Param("jobNo") String jobNo);
+ 	
 }

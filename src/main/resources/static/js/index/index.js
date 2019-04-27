@@ -35,3 +35,7 @@ layui.use('element', function() {
 	});
 
 });
+
+function loginout(){
+	location = "/loginout";
+}

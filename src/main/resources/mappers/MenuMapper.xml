@@ -3,11 +3,11 @@
 <mapper namespace="com.example.craily.dao.MenuMapper">
   <resultMap id="BaseResultMap" type="com.example.craily.po.Menu">
     <constructor>
-      <arg column="menuno" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="menu_no" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="name" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="url" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="parentmenurulesno" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="open_rules" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="parent_menu_no" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="open_all_operations" javaType="java.lang.String" jdbcType="VARCHAR" />
     </constructor>
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -69,7 +69,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    menuno, name, url, parentmenurulesno, open_rules
+    menu_no, name, url, parent_menu_no, open_all_operations
   </sql>
   <select id="selectByExample" parameterType="com.example.craily.po.MenuExample" resultMap="BaseResultMap">
     select
@@ -92,16 +92,16 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.example.craily.po.Menu">
-    insert into menu (menuno, name, url, 
-      parentmenurulesno, open_rules)
-    values (#{menuno,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, 
-      #{parentmenurulesno,jdbcType=VARCHAR}, #{openRules,jdbcType=VARCHAR})
+    insert into menu (menu_no, name, url, 
+      parent_menu_no, open_all_operations)
+    values (#{menuNo,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{url,jdbcType=VARCHAR}, 
+      #{parentMenuNo,jdbcType=VARCHAR}, #{openAllOperations,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="com.example.craily.po.Menu">
     insert into menu
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="menuno != null">
-        menuno,
+      <if test="menuNo != null">
+        menu_no,
       </if>
       <if test="name != null">
         name,
@@ -109,16 +109,16 @@
       <if test="url != null">
         url,
       </if>
-      <if test="parentmenurulesno != null">
-        parentmenurulesno,
+      <if test="parentMenuNo != null">
+        parent_menu_no,
       </if>
-      <if test="openRules != null">
-        open_rules,
+      <if test="openAllOperations != null">
+        open_all_operations,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="menuno != null">
-        #{menuno,jdbcType=VARCHAR},
+      <if test="menuNo != null">
+        #{menuNo,jdbcType=VARCHAR},
       </if>
       <if test="name != null">
         #{name,jdbcType=VARCHAR},
@@ -126,11 +126,11 @@
       <if test="url != null">
         #{url,jdbcType=VARCHAR},
       </if>
-      <if test="parentmenurulesno != null">
-        #{parentmenurulesno,jdbcType=VARCHAR},
+      <if test="parentMenuNo != null">
+        #{parentMenuNo,jdbcType=VARCHAR},
       </if>
-      <if test="openRules != null">
-        #{openRules,jdbcType=VARCHAR},
+      <if test="openAllOperations != null">
+        #{openAllOperations,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -143,8 +143,8 @@
   <update id="updateByExampleSelective" parameterType="map">
     update menu
     <set>
-      <if test="record.menuno != null">
-        menuno = #{record.menuno,jdbcType=VARCHAR},
+      <if test="record.menuNo != null">
+        menu_no = #{record.menuNo,jdbcType=VARCHAR},
       </if>
       <if test="record.name != null">
         name = #{record.name,jdbcType=VARCHAR},
@@ -152,11 +152,11 @@
       <if test="record.url != null">
         url = #{record.url,jdbcType=VARCHAR},
       </if>
-      <if test="record.parentmenurulesno != null">
-        parentmenurulesno = #{record.parentmenurulesno,jdbcType=VARCHAR},
+      <if test="record.parentMenuNo != null">
+        parent_menu_no = #{record.parentMenuNo,jdbcType=VARCHAR},
       </if>
-      <if test="record.openRules != null">
-        open_rules = #{record.openRules,jdbcType=VARCHAR},
+      <if test="record.openAllOperations != null">
+        open_all_operations = #{record.openAllOperations,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -165,11 +165,11 @@
   </update>
   <update id="updateByExample" parameterType="map">
     update menu
-    set menuno = #{record.menuno,jdbcType=VARCHAR},
+    set menu_no = #{record.menuNo,jdbcType=VARCHAR},
       name = #{record.name,jdbcType=VARCHAR},
       url = #{record.url,jdbcType=VARCHAR},
-      parentmenurulesno = #{record.parentmenurulesno,jdbcType=VARCHAR},
-      open_rules = #{record.openRules,jdbcType=VARCHAR}
+      parent_menu_no = #{record.parentMenuNo,jdbcType=VARCHAR},
+      open_all_operations = #{record.openAllOperations,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>

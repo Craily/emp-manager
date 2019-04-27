@@ -5,14 +5,11 @@ public class Operations {
 
     private String name;
 
-    private String code;
-
     private String menuNo;
 
-    public Operations(String operationsNo, String name, String code, String menuNo) {
+    public Operations(String operationsNo, String name, String menuNo) {
         this.operationsNo = operationsNo;
         this.name = name;
-        this.code = code;
         this.menuNo = menuNo;
     }
 
@@ -34,14 +31,6 @@ public class Operations {
 
     public void setName(String name) {
         this.name = name == null ? null : name.trim();
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code == null ? null : code.trim();
     }
 
     public String getMenuNo() {

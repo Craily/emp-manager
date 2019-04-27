@@ -5,10 +5,11 @@
     <constructor>
       <arg column="emp_no" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="name" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="birthday" javaType="java.util.Date" jdbcType="DATE" />
+      <arg column="join_time" javaType="java.util.Date" jdbcType="DATE" />
       <arg column="sex" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="mobile_phone" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="dept_no" javaType="java.lang.String" jdbcType="VARCHAR" />
+      <arg column="login_name" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="password" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="job_no" javaType="java.lang.String" jdbcType="VARCHAR" />
     </constructor>
@@ -72,7 +73,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    emp_no, name, birthday, sex, mobile_phone, dept_no, password, job_no
+    emp_no, name, join_time, sex, mobile_phone, dept_no, login_name, password, job_no
   </sql>
   <select id="selectByExample" parameterType="com.example.craily.po.EmpExample" resultMap="BaseResultMap">
     select
@@ -95,12 +96,14 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.example.craily.po.Emp">
-    insert into emp (emp_no, name, birthday, 
+    insert into emp (emp_no, name, join_time, 
       sex, mobile_phone, dept_no, 
-      password, job_no)
-    values (#{empNo,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{birthday,jdbcType=DATE}, 
+      login_name, password, job_no
+      )
+    values (#{empNo,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{joinTime,jdbcType=DATE}, 
       #{sex,jdbcType=VARCHAR}, #{mobilePhone,jdbcType=VARCHAR}, #{deptNo,jdbcType=VARCHAR}, 
-      #{password,jdbcType=VARCHAR}, #{jobNo,jdbcType=VARCHAR})
+      #{loginName,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, #{jobNo,jdbcType=VARCHAR}
+      )
   </insert>
   <insert id="insertSelective" parameterType="com.example.craily.po.Emp">
     insert into emp
@@ -111,8 +114,8 @@
       <if test="name != null">
         name,
       </if>
-      <if test="birthday != null">
-        birthday,
+      <if test="joinTime != null">
+        join_time,
       </if>
       <if test="sex != null">
         sex,
@@ -122,6 +125,9 @@
       </if>
       <if test="deptNo != null">
         dept_no,
+      </if>
+      <if test="loginName != null">
+        login_name,
       </if>
       <if test="password != null">
         password,
@@ -137,8 +143,8 @@
       <if test="name != null">
         #{name,jdbcType=VARCHAR},
       </if>
-      <if test="birthday != null">
-        #{birthday,jdbcType=DATE},
+      <if test="joinTime != null">
+        #{joinTime,jdbcType=DATE},
       </if>
       <if test="sex != null">
         #{sex,jdbcType=VARCHAR},
@@ -148,6 +154,9 @@
       </if>
       <if test="deptNo != null">
         #{deptNo,jdbcType=VARCHAR},
+      </if>
+      <if test="loginName != null">
+        #{loginName,jdbcType=VARCHAR},
       </if>
       <if test="password != null">
         #{password,jdbcType=VARCHAR},
@@ -172,8 +181,8 @@
       <if test="record.name != null">
         name = #{record.name,jdbcType=VARCHAR},
       </if>
-      <if test="record.birthday != null">
-        birthday = #{record.birthday,jdbcType=DATE},
+      <if test="record.joinTime != null">
+        join_time = #{record.joinTime,jdbcType=DATE},
       </if>
       <if test="record.sex != null">
         sex = #{record.sex,jdbcType=VARCHAR},
@@ -183,6 +192,9 @@
       </if>
       <if test="record.deptNo != null">
         dept_no = #{record.deptNo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.loginName != null">
+        login_name = #{record.loginName,jdbcType=VARCHAR},
       </if>
       <if test="record.password != null">
         password = #{record.password,jdbcType=VARCHAR},
@@ -199,10 +211,11 @@
     update emp
     set emp_no = #{record.empNo,jdbcType=VARCHAR},
       name = #{record.name,jdbcType=VARCHAR},
-      birthday = #{record.birthday,jdbcType=DATE},
+      join_time = #{record.joinTime,jdbcType=DATE},
       sex = #{record.sex,jdbcType=VARCHAR},
       mobile_phone = #{record.mobilePhone,jdbcType=VARCHAR},
       dept_no = #{record.deptNo,jdbcType=VARCHAR},
+      login_name = #{record.loginName,jdbcType=VARCHAR},
       password = #{record.password,jdbcType=VARCHAR},
       job_no = #{record.jobNo,jdbcType=VARCHAR}
     <if test="_parameter != null">

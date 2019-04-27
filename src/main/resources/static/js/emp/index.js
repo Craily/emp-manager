@@ -19,7 +19,7 @@ layui.use('table', function() {
 				return d.sex == "1" ? "男" : d.sex == "0" ? "女" : "-";
 			}},
 			{field: 'mobile_phone', title: '电话', width: 120},
-			{field: 'birthday', title: '生日', align:'center', width: 120},
+			{field: 'join_time', title: '入职时间', align:'center', width: 120},
 			{field: 'dept_name', title: '部门', minWidth: 150},
 			{field: 'job_name', title: '职位', align:'center', width: 90},
 			{fixed: 'right', align:'center', width: 270, toolbar: '#empTableBar'}
