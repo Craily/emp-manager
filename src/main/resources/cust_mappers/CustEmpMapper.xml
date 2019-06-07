@@ -23,7 +23,7 @@
 			job j
 		on e.job_no = j.job_no
 		where
-			1 = 1
+			e.job_no != '1'
 		<if test="emp.empNo != null and emp.empNo != ''">
 		and e.emp_no = #{emp.empNo}
 		</if>

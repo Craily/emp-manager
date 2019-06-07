@@ -1,0 +1,9 @@
+@charset "UTF-8";
+
+.leftDiv{float: left;width: 50%;}
+.rightDiv{float: right;width: 50%;}
+
+.menuDiv{float: left;width: 99%;}
+.childrenMenuDiv{float: left;width: 99%;}
+.haveOperationDiv{float: right;width: 99%;}
+.custOperationDiv{float: right;width: 99%;}

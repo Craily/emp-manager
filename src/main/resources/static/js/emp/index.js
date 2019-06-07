@@ -1,8 +1,12 @@
-layui.use('table', function() {
+layui.use(['table', 'form'], function() {
 	var table = layui.table;
+	var form = layui.form;
 	
 	var $ = layui.$ // 由于layer弹层依赖jQuery，所以可以直接得到
 	, layer = layui.layer;
+	
+	//初始化部门下拉框
+	initDeptSelected($, form);
 	
 	var tableIns = table.render({
 		elem: '#empTable',
@@ -22,7 +26,7 @@ layui.use('table', function() {
 			{field: 'join_time', title: '入职时间', align:'center', width: 120},
 			{field: 'dept_name', title: '部门', minWidth: 150},
 			{field: 'job_name', title: '职位', align:'center', width: 90},
-			{fixed: 'right', align:'center', width: 270, toolbar: '#empTableBar'}
+			{fixed: 'right', align:'center', width: 180, toolbar: '#empTableBar'}
 		]],
 		page: {
 			limit: 10,
@@ -71,9 +75,25 @@ layui.use('table', function() {
 	    };
 	});
 	
+	//监听行工具事件
+	table.on('tool(empTable)', function(obj){ //注：tool 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"
+		var data = obj.data //获得当前行数据
+		,layEvent = obj.event; //获得 lay-event 对应的值
+		if(layEvent === 'beRole'){
+			
+		} else if(layEvent === 'del'){
+			layer.confirm('是否确认删除所选数据？', {icon: 3, title:'提示'}, function(index){
+        		delEmp(index, data, $, tableIns);
+        	});
+		} else if(layEvent === 'edit'){
+			empDone(data.emp_no);
+		}
+	});
+	
 	var active = {
 		    reload: function(){
 		    	var empName = $('#empName');
+		    	
 			    //执行重载
 		    	table.reload('empTable', {
 			        page: {

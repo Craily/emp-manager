@@ -57,8 +57,7 @@
         <table schema="" tableName="job"></table>
         <table schema="" tableName="menu"></table>
         <table schema="" tableName="operations"></table>
-        <table schema="" tableName="menu_rules"></table>
-        <table schema="" tableName="operations_rules"></table>
+        <table schema="" tableName="job_menu"></table>
 
     </context>
 </generatorConfiguration>

@@ -12,6 +12,7 @@ import org.apache.shiro.authc.SimpleAuthenticationInfo;
 import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
+import org.apache.shiro.authz.UnauthorizedException;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,23 +32,37 @@ public class UserRealm extends AuthorizingRealm {
 	@Override
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
 		// TODO 权限验证
-		String loginName = principalCollection.getPrimaryPrincipal().toString();
+		Emp emp = (Emp) principalCollection.getPrimaryPrincipal();
 		SimpleAuthorizationInfo simpleAuthorizationInfo = new SimpleAuthorizationInfo();
 		
-		Emp emp = queryEmpByLoginName(loginName);
-		if(emp == null) {
-			throw new UnknownAccountException();
-		}
+//		Emp emp = queryEmpByLoginName(loginName);
+//		if(emp == null) {
+//			throw new UnknownAccountException();
+//		}
 		
 		//设置角色
-		List<Map<String, Object>> menus = custEmpMapper.queryEmpJobMenuByJobNo(emp.getJobNo());
 		Set<String> roles = new HashSet<String>();
-		menus.forEach(menu -> roles.add(menu.get("name").toString()));
-		simpleAuthorizationInfo.setRoles(roles);
 		//设置权限
-		List<Map<String, Object>> operations = custEmpMapper.queryEmpOperationsByFlag(emp.getJobNo());
 		Set<String> permissions = new HashSet<String>();
-		operations.forEach(operation -> permissions.add(operation.get("name").toString()));
+		if("1".equals(emp.getJobNo())) {
+			//管理员权限
+			roles.add("all");
+			permissions.add("all");
+		}else {
+			//非管理员权限
+			List<Map<String, Object>> menus = custEmpMapper.queryEmpJobMenuByJobNo(emp.getJobNo());
+			if(menus == null) {
+				throw new UnauthorizedException();
+			}
+			menus.forEach(menu -> roles.add(menu.get("name").toString()));
+			
+			List<Map<String, Object>> operations = custEmpMapper.queryEmpOperationsByJobNo(emp.getJobNo());
+			if(operations == null) {
+				throw new UnauthorizedException();
+			}
+			operations.forEach(operation -> permissions.add(operation.get("name").toString()));
+		}
+		simpleAuthorizationInfo.setRoles(roles);
 		simpleAuthorizationInfo.setStringPermissions(permissions);
 		return simpleAuthorizationInfo;
 	}

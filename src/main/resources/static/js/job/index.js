@@ -5,17 +5,17 @@ layui.use('table', function() {
 	, layer = layui.layer;
 	
 	var tableIns = table.render({
-		elem: '#deptTable',
-		url: '/dept/queryDept',
+		elem: '#jobTable',
+		url: '/job/queryJob',
 		method: 'post',
 		toolbar: 'default',
 		defaultToolbar: [],
 		cols: [[
 			{type: 'checkbox', fixed: 'left'},
-			{field: 'deptNo', title: '编号', minWidth: 80, hide: true},
+			{field: 'jobNo', title: '编号', minWidth: 80, hide: true},
 			{field: 'name', title: '名称', minWidth: 120},
-			{field: 'address', title: '地址', minWidth: 120},
-			{fixed: 'right', width: 165, align:'center', toolbar: '#deptTableBar'}
+			{field: 'level', title: '等级', minWidth: 120},
+			{fixed: 'right', width: 165, align:'center', toolbar: '#jobTableBar'}
 		]],
 		page: {
 			limit: 10,
@@ -39,12 +39,12 @@ layui.use('table', function() {
 	});
 	
 	//监听头工具栏事件
-	table.on('toolbar(deptTable)', function(obj) {
+	table.on('toolbar(jobTable)', function(obj) {
 		var checkStatus = table.checkStatus(obj.config.id);
 		var data = checkStatus.data;
 	    switch(obj.event){
 	    	case 'add':
-	    		deptDone();
+	    		jobDone();
     		break;
 	    	case 'update':
 		        if(data.length === 0){
@@ -52,7 +52,7 @@ layui.use('table', function() {
 		        } else if(data.length > 1){
 		        	layer.msg('只能同时编辑一个', {icon: 5, anim: 6}); 
 		        } else {
-		        	deptDone(data[0].deptNo);
+		        	jobDone(data[0].jobNo);
 		        }
 	        break;
 	    	case 'delete':
@@ -60,7 +60,7 @@ layui.use('table', function() {
 		        	layer.msg('请至少选择一行', {icon: 5, anim: 6});
 		        } else {
 		        	layer.confirm('是否确认删除所选数据？', {icon: 3, title:'提示'}, function(index){
-		        		delDept(index, data, $, tableIns);
+		        		delJob(index, data, $, tableIns);
 		        	});
 		        }
 	        break;
@@ -68,28 +68,28 @@ layui.use('table', function() {
 	});
 	
 	//监听行工具事件
-	table.on('tool(deptTable)', function(obj){ //注：tool 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"
+	table.on('tool(jobTable)', function(obj){ //注：tool 是工具条事件名，test 是 table 原始容器的属性 lay-filter="对应的值"
 		var data = obj.data //获得当前行数据
 		,layEvent = obj.event; //获得 lay-event 对应的值
 		if(layEvent === 'del'){
 			layer.confirm('是否确认删除所选数据？', {icon: 3, title:'提示'}, function(index){
-				delDept(index, [data], $, tableIns);
+        		delJob(index, [data], $, tableIns);
         	});
 	    } else if(layEvent === 'edit'){
-	    	deptDone(data.deptNo);
+	    	jobDone(data.jobNo);
 	    }
 	});
 	
 	var active = {
 		    reload: function(){
-		    	var deptName = $('#deptName');
+		    	var jobName = $('#jobName');
 			    //执行重载
-		    	table.reload('deptTable', {
+		    	table.reload('jobTable', {
 			        page: {
 			        	curr: 1 //重新从第 1 页开始
 			        },
 			        where: {
-			        	name: deptName.val()
+			        	name: jobName.val()
 			        }
 			    });
 		    }
@@ -101,14 +101,14 @@ layui.use('table', function() {
 	});
 });
 
-function deptDone(deptNo){
-	var url = '/dept/done';
-	if(deptNo != null && deptNo != undefined && deptNo != ""){
-		url = '/dept/done?deptNo=' + deptNo;
+function jobDone(jobNo){
+	var url = '/job/done';
+	if(jobNo != null && jobNo != undefined && jobNo != ""){
+		url = '/job/done?jobNo=' + jobNo;
 	}
 	layer.open({
 		type: 2,
-		title: '部门操作',
+		title: '职位操作',
 		maxmin: true,
 		shadeClose: true,
 		area : ['500px' , '350px'],
@@ -116,32 +116,32 @@ function deptDone(deptNo){
 	});
 }
 
-function delDept(index, data, $, tableIns){
+function delJob(index, data, $, tableIns){
 
-	var deptNoArray = [];
-	for (let dept of data) {
-		deptNoArray.push(dept.deptNo);
+	var jobNoArray = [];
+	for (let job of data) {
+		jobNoArray.push(job.jobNo);
 	}
 	
 	$.ajax({
-		url: '/dept/delDept',
+		url: '/job/delJob',
 		type: 'POST',
 		async: false,
 		traditional: true,
 		dataType: 'json',
 		data: {
-			deptNos: deptNoArray
+			jobNos: jobNoArray
 		},
 		success: function(data){
 			if(data.status === 1){
-				var deptName = $('#deptName');
+				var jobName = $('#jobName');
 				//执行重载
-				tableIns.reload('deptTable', {
+				tableIns.reload('jobTable', {
 			        page: {
 			        	curr: 1 //重新从第 1 页开始
 			        },
 			        where: {
-			        	name: deptName.val()
+			        	name: jobName.val()
 			        }
 			    });
 		    	layer.close(index);

@@ -20,6 +20,8 @@ import org.apache.shiro.authc.pam.ModularRealmAuthenticator;
 import org.apache.shiro.authz.ModularRealmAuthorizer;
 import org.apache.shiro.authz.permission.WildcardPermissionResolver;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
+import org.apache.shiro.web.servlet.SimpleCookie;
+import org.apache.shiro.web.session.mgt.DefaultWebSessionManager;
 import org.apache.shiro.mgt.SecurityManager;
 
 @Configuration
@@ -44,6 +46,7 @@ public class ShiroConfiguration {
 		
 		//自定义过滤器
 		Map<String, Filter> filterMap = new LinkedHashMap<String, Filter>();
+		filterMap.put("UserFilter", new UserFilter());
 		shiroFilterFactoryBean.setFilters(filterMap);
 		
 		//权限控制
@@ -59,7 +62,7 @@ public class ShiroConfiguration {
 		
 		//过滤链定义，从上向下顺序执行，一般将/**放在最为下边,不然会导致所有 url都被拦截
 		//authc:所有url都必须认证通过才可以访问; anon:所有url都都可以匿名访问
-		filterChainDefinitionMap.put("/**", "authc");
+		filterChainDefinitionMap.put("/**", "UserFilter");
 		
 		shiroFilterFactoryBean.setFilterChainDefinitionMap(filterChainDefinitionMap);
 		return shiroFilterFactoryBean;
@@ -85,6 +88,16 @@ public class ShiroConfiguration {
 		
 		//设置Realm
 		defaultWebSecurityManager.setRealm(userRealm);
+		
+		//设置session
+		DefaultWebSessionManager defaultWebSessionManager = new DefaultWebSessionManager();
+		SimpleCookie simpleCookie = new SimpleCookie();
+		simpleCookie.setName("sid");
+		simpleCookie.setMaxAge(1800);
+		simpleCookie.setHttpOnly(true);
+		defaultWebSessionManager.setSessionIdCookie(simpleCookie);
+		defaultWebSessionManager.setSessionIdCookieEnabled(true);
+		defaultWebSecurityManager.setSessionManager(defaultWebSessionManager);
 		return defaultWebSecurityManager;
 	}
 	

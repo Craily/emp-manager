@@ -3,14 +3,17 @@ package com.example.craily.po;
 public class Operations {
     private String operationsNo;
 
-    private String name;
+    private String jobNo;
 
     private String menuNo;
 
-    public Operations(String operationsNo, String name, String menuNo) {
+    private String operationsName;
+
+    public Operations(String operationsNo, String jobNo, String menuNo, String operationsName) {
         this.operationsNo = operationsNo;
-        this.name = name;
+        this.jobNo = jobNo;
         this.menuNo = menuNo;
+        this.operationsName = operationsName;
     }
 
     public Operations() {
@@ -25,12 +28,12 @@ public class Operations {
         this.operationsNo = operationsNo == null ? null : operationsNo.trim();
     }
 
-    public String getName() {
-        return name;
+    public String getJobNo() {
+        return jobNo;
     }
 
-    public void setName(String name) {
-        this.name = name == null ? null : name.trim();
+    public void setJobNo(String jobNo) {
+        this.jobNo = jobNo == null ? null : jobNo.trim();
     }
 
     public String getMenuNo() {
@@ -39,5 +42,13 @@ public class Operations {
 
     public void setMenuNo(String menuNo) {
         this.menuNo = menuNo == null ? null : menuNo.trim();
+    }
+
+    public String getOperationsName() {
+        return operationsName;
+    }
+
+    public void setOperationsName(String operationsName) {
+        this.operationsName = operationsName == null ? null : operationsName.trim();
     }
 }

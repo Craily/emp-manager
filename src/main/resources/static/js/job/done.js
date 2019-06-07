@@ -4,15 +4,15 @@ layui.use('form', function() {
 	var $ = layui.$ // 由于layer弹层依赖jQuery，所以可以直接得到
 	, layer = layui.layer;
 	
-	var deptNo = $('#deptNo').val();
-	if(deptNo != null && deptNo != undefined && deptNo != ""){
-		$.post('/dept/queryDept', {deptNo: deptNo}, function(date){
+	var jobNo = $('#jobNo').val();
+	if(jobNo != null && jobNo != undefined && jobNo != ""){
+		$.post('/job/queryJob', {jobNo: jobNo}, function(date){
 			if(date.status === 1){
-				var dept = date.data.list[0];
+				var job = date.data.list[0];
 				//初始化表单数据
-				form.val('dept-form', {
-				    "name": dept.name,
-				    "address": dept.address
+				form.val('job-form', {
+				    "name": job.name,
+				    "level": job.level
 				});
 			}else {
 				layer.msg(date.msg, {icon: 5, anim: 6}); 
@@ -22,9 +22,9 @@ layui.use('form', function() {
 	
 	//监听提交
 	form.on('submit(done)', function(data) {
-		var url = "/dept/createDept";
-		if(deptNo != null && deptNo != undefined && deptNo != ""){
-			url = "/dept/editDept";
+		var url = "/job/createJob";
+		if(jobNo != null && jobNo != undefined && jobNo != ""){
+			url = "/job/editJob";
 		}
 		$.post(url, data.field, function(date){
 			if(date.status === 1){
@@ -33,13 +33,13 @@ layui.use('form', function() {
 				parent.layer.close(index);
 				
 				// 表格重载
-				var deptName = $('#deptName', parent.document).val();
-				parent.layui.table.reload('deptTable',{
+				var jobName = $('#jobName', parent.document).val();
+				parent.layui.table.reload('jobTable',{
 			        page: {
 			        	curr: 1 //重新从第 1 页开始
 			        },
 			        where: {
-			        	name: deptName
+			        	name: jobName
 			        }
 			    });
 			}else {

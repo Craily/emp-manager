@@ -1,0 +1,73 @@
+package com.example.craily.controller.authority;
+
+import java.util.Map;
+
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.example.craily.po.Emp;
+import com.example.craily.po.Menu;
+import com.example.craily.service.AuthorityService;
+import com.example.craily.utils.ConstantUtil;
+import com.example.craily.utils.ResponeUtil;
+
+import io.swagger.annotations.ApiOperation;
+
+@RestController
+@RequestMapping("/authority")
+public class AuthorityRestController {
+	
+	@Autowired
+	private AuthorityService authorityService;
+
+	@ApiOperation(value="根据登陆用户职位与下拉框所选职位以及所选菜单返回应显示菜单", httpMethod="POST", response=ResponeUtil.class, produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@PostMapping(value="queryMenu", produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public ResponeUtil<Map<String, Object>> queryMenu(@ModelAttribute("emp") Emp emp, String selectedJobNo, String selectedMenuNo) {
+		return authorityService.queryMenu(emp, selectedJobNo, selectedMenuNo);
+	}
+	
+	@ApiOperation(value="根据登陆用户职位与下拉框所选职位以及所选菜单返回应显示操作", httpMethod="POST", response=ResponeUtil.class, produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@PostMapping(value="queryOperation", produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public ResponeUtil<Map<String, Object>> queryOperations(@ModelAttribute("emp") Emp emp, String selectedJobNo, String selectedMenuNo) {
+		return authorityService.queryOperations(emp, selectedJobNo, selectedMenuNo);
+	}
+	
+	@ApiOperation(value="根据菜单ID查询菜单信息", httpMethod="POST", response=ResponeUtil.class, produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@PostMapping(value="queryMenuInfo", produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public ResponeUtil<Menu> queryMenuInfo(@RequestParam("menuNo") String menuNo) {
+		return authorityService.queryMenuInfo(menuNo);
+	}
+	
+	@ApiOperation(value="创建菜单", httpMethod="POST", response=ResponeUtil.class, produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@PostMapping(value="createMenu", produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public ResponeUtil<String> createMenu(@ModelAttribute("emp") Emp emp, Menu menu) {
+		try {
+			return authorityService.createMenu(emp, menu);
+		} catch (Exception e) {
+			return new ResponeUtil<String>(ConstantUtil.Fail.getCode(), ConstantUtil.Fail.getMsg(), e.getMessage());
+		}
+	}
+	
+	@ApiOperation(value="编辑菜单", httpMethod="POST", response=ResponeUtil.class, produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@PostMapping(value="editMenu", produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public ResponeUtil<String> editMenu(Menu menu) {
+		try {
+			return authorityService.editMenu(menu);
+		} catch (Exception e) {
+			return new ResponeUtil<String>(ConstantUtil.Fail.getCode(), ConstantUtil.Fail.getMsg(), e.getMessage());
+		}
+	}
+	
+	@ModelAttribute("emp")
+	private Emp getSessionEmp() {
+		Subject subject = SecurityUtils.getSubject();
+		return (Emp) subject.getPrincipal();
+	}
+}

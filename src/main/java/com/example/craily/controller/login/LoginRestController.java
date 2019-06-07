@@ -8,12 +8,9 @@ import org.apache.shiro.subject.Subject;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.SessionAttributes;
 
-import com.example.craily.po.Emp;
 import com.example.craily.utils.ResponeUtil;
 
 import io.swagger.annotations.ApiOperation;
@@ -21,8 +18,6 @@ import io.swagger.annotations.ApiOperation;
 @RestController
 @RequestMapping("/login")
 public class LoginRestController {
-	
-	
 
 	@ApiOperation(value="登陆Action", httpMethod="POST", response=ResponeUtil.class, produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@PostMapping(value="/login", produces=MediaType.APPLICATION_JSON_UTF8_VALUE)

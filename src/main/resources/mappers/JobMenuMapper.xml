@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.example.craily.dao.OperationsMapper">
-  <resultMap id="BaseResultMap" type="com.example.craily.po.Operations">
+<mapper namespace="com.example.craily.dao.JobMenuMapper">
+  <resultMap id="BaseResultMap" type="com.example.craily.po.JobMenu">
     <constructor>
-      <arg column="operations_no" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="job_no" javaType="java.lang.String" jdbcType="VARCHAR" />
       <arg column="menu_no" javaType="java.lang.String" jdbcType="VARCHAR" />
-      <arg column="operations_name" javaType="java.lang.String" jdbcType="VARCHAR" />
     </constructor>
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -68,15 +66,15 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    operations_no, job_no, menu_no, operations_name
+    job_no, menu_no
   </sql>
-  <select id="selectByExample" parameterType="com.example.craily.po.OperationsExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.example.craily.po.JobMenuExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from operations
+    from job_menu
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -84,69 +82,49 @@
       order by ${orderByClause}
     </if>
   </select>
-  <delete id="deleteByExample" parameterType="com.example.craily.po.OperationsExample">
-    delete from operations
+  <delete id="deleteByExample" parameterType="com.example.craily.po.JobMenuExample">
+    delete from job_menu
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.example.craily.po.Operations">
-    insert into operations (operations_no, job_no, menu_no, 
-      operations_name)
-    values (#{operationsNo,jdbcType=VARCHAR}, #{jobNo,jdbcType=VARCHAR}, #{menuNo,jdbcType=VARCHAR}, 
-      #{operationsName,jdbcType=VARCHAR})
+  <insert id="insert" parameterType="com.example.craily.po.JobMenu">
+    insert into job_menu (job_no, menu_no)
+    values (#{jobNo,jdbcType=VARCHAR}, #{menuNo,jdbcType=VARCHAR})
   </insert>
-  <insert id="insertSelective" parameterType="com.example.craily.po.Operations">
-    insert into operations
+  <insert id="insertSelective" parameterType="com.example.craily.po.JobMenu">
+    insert into job_menu
     <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="operationsNo != null">
-        operations_no,
-      </if>
       <if test="jobNo != null">
         job_no,
       </if>
       <if test="menuNo != null">
         menu_no,
       </if>
-      <if test="operationsName != null">
-        operations_name,
-      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="operationsNo != null">
-        #{operationsNo,jdbcType=VARCHAR},
-      </if>
       <if test="jobNo != null">
         #{jobNo,jdbcType=VARCHAR},
       </if>
       <if test="menuNo != null">
         #{menuNo,jdbcType=VARCHAR},
       </if>
-      <if test="operationsName != null">
-        #{operationsName,jdbcType=VARCHAR},
-      </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.example.craily.po.OperationsExample" resultType="java.lang.Long">
-    select count(*) from operations
+  <select id="countByExample" parameterType="com.example.craily.po.JobMenuExample" resultType="java.lang.Long">
+    select count(*) from job_menu
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update operations
+    update job_menu
     <set>
-      <if test="record.operationsNo != null">
-        operations_no = #{record.operationsNo,jdbcType=VARCHAR},
-      </if>
       <if test="record.jobNo != null">
         job_no = #{record.jobNo,jdbcType=VARCHAR},
       </if>
       <if test="record.menuNo != null">
         menu_no = #{record.menuNo,jdbcType=VARCHAR},
-      </if>
-      <if test="record.operationsName != null">
-        operations_name = #{record.operationsName,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null">
@@ -154,11 +132,9 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update operations
-    set operations_no = #{record.operationsNo,jdbcType=VARCHAR},
-      job_no = #{record.jobNo,jdbcType=VARCHAR},
-      menu_no = #{record.menuNo,jdbcType=VARCHAR},
-      operations_name = #{record.operationsName,jdbcType=VARCHAR}
+    update job_menu
+    set job_no = #{record.jobNo,jdbcType=VARCHAR},
+      menu_no = #{record.menuNo,jdbcType=VARCHAR}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>

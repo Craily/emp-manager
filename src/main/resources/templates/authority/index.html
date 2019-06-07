@@ -1,0 +1,35 @@
+<link rel="stylesheet" href="/css/authority/index.css">
+<script type="text/javascript" src="/js/authority/index.js"></script>
+<div class="layui-form">
+	<div class="layui-inline">
+		<label class="layui-form-label">职位</label>
+		<div class="layui-input-inline">
+			<select id="selectedJobNo" name="selectedJobNo" lay-filter="selectedJobNo">
+			</select>
+		</div>
+	</div>
+	<div class="layui-inline">
+		<button class="layui-btn" data-type="reload">查询</button>
+		<button class="layui-btn layui-btn-warm" data-type="reload">保存</button>
+	</div>
+</div>
+
+<div class="leftDiv">
+	<div class="menuDiv">
+		<table id="menuTable" lay-filter="menuTable"></table>
+	</div>
+	
+	<div class="childrenMenuDiv">
+		<table id="childrenMenuTable" lay-filter="childrenMenuTable"></table>
+	</div>
+</div>
+
+<div class="rightDiv">
+	<div class="haveOperationDiv">
+		<table id="haveOperationTable" lay-filter="haveOperationTable"></table>
+	</div>
+	
+	<div class="custOperationDiv">
+		<table id="custOperationTable" lay-filter="custOperationTable"></table>
+	</div>
+</div>

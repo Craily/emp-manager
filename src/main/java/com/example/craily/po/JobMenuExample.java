@@ -3,14 +3,14 @@ package com.example.craily.po;
 import java.util.ArrayList;
 import java.util.List;
 
-public class OperationsExample {
+public class JobMenuExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public OperationsExample() {
+    public JobMenuExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
@@ -102,76 +102,6 @@ public class OperationsExample {
                 throw new RuntimeException("Between values for " + property + " cannot be null");
             }
             criteria.add(new Criterion(condition, value1, value2));
-        }
-
-        public Criteria andOperationsNoIsNull() {
-            addCriterion("operations_no is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andOperationsNoIsNotNull() {
-            addCriterion("operations_no is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andOperationsNoEqualTo(String value) {
-            addCriterion("operations_no =", value, "operationsNo");
-            return (Criteria) this;
-        }
-
-        public Criteria andOperationsNoNotEqualTo(String value) {
-            addCriterion("operations_no <>", value, "operationsNo");
-            return (Criteria) this;
-        }
-
-        public Criteria andOperationsNoGreaterThan(String value) {
-            addCriterion("operations_no >", value, "operationsNo");
-            return (Criteria) this;
-        }
-
-        public Criteria andOperationsNoGreaterThanOrEqualTo(String value) {
-            addCriterion("operations_no >=", value, "operationsNo");
-            return (Criteria) this;
-        }
-
-        public Criteria andOperationsNoLessThan(String value) {
-            addCriterion("operations_no <", value, "operationsNo");
-            return (Criteria) this;
-        }
-
-        public Criteria andOperationsNoLessThanOrEqualTo(String value) {
-            addCriterion("operations_no <=", value, "operationsNo");
-            return (Criteria) this;
-        }
-
-        public Criteria andOperationsNoLike(String value) {
-            addCriterion("operations_no like", value, "operationsNo");
-            return (Criteria) this;
-        }
-
-        public Criteria andOperationsNoNotLike(String value) {
-            addCriterion("operations_no not like", value, "operationsNo");
-            return (Criteria) this;
-        }
-
-        public Criteria andOperationsNoIn(List<String> values) {
-            addCriterion("operations_no in", values, "operationsNo");
-            return (Criteria) this;
-        }
-
-        public Criteria andOperationsNoNotIn(List<String> values) {
-            addCriterion("operations_no not in", values, "operationsNo");
-            return (Criteria) this;
-        }
-
-        public Criteria andOperationsNoBetween(String value1, String value2) {
-            addCriterion("operations_no between", value1, value2, "operationsNo");
-            return (Criteria) this;
-        }
-
-        public Criteria andOperationsNoNotBetween(String value1, String value2) {
-            addCriterion("operations_no not between", value1, value2, "operationsNo");
-            return (Criteria) this;
         }
 
         public Criteria andJobNoIsNull() {
@@ -311,76 +241,6 @@ public class OperationsExample {
 
         public Criteria andMenuNoNotBetween(String value1, String value2) {
             addCriterion("menu_no not between", value1, value2, "menuNo");
-            return (Criteria) this;
-        }
-
-        public Criteria andOperationsNameIsNull() {
-            addCriterion("operations_name is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andOperationsNameIsNotNull() {
-            addCriterion("operations_name is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andOperationsNameEqualTo(String value) {
-            addCriterion("operations_name =", value, "operationsName");
-            return (Criteria) this;
-        }
-
-        public Criteria andOperationsNameNotEqualTo(String value) {
-            addCriterion("operations_name <>", value, "operationsName");
-            return (Criteria) this;
-        }
-
-        public Criteria andOperationsNameGreaterThan(String value) {
-            addCriterion("operations_name >", value, "operationsName");
-            return (Criteria) this;
-        }
-
-        public Criteria andOperationsNameGreaterThanOrEqualTo(String value) {
-            addCriterion("operations_name >=", value, "operationsName");
-            return (Criteria) this;
-        }
-
-        public Criteria andOperationsNameLessThan(String value) {
-            addCriterion("operations_name <", value, "operationsName");
-            return (Criteria) this;
-        }
-
-        public Criteria andOperationsNameLessThanOrEqualTo(String value) {
-            addCriterion("operations_name <=", value, "operationsName");
-            return (Criteria) this;
-        }
-
-        public Criteria andOperationsNameLike(String value) {
-            addCriterion("operations_name like", value, "operationsName");
-            return (Criteria) this;
-        }
-
-        public Criteria andOperationsNameNotLike(String value) {
-            addCriterion("operations_name not like", value, "operationsName");
-            return (Criteria) this;
-        }
-
-        public Criteria andOperationsNameIn(List<String> values) {
-            addCriterion("operations_name in", values, "operationsName");
-            return (Criteria) this;
-        }
-
-        public Criteria andOperationsNameNotIn(List<String> values) {
-            addCriterion("operations_name not in", values, "operationsName");
-            return (Criteria) this;
-        }
-
-        public Criteria andOperationsNameBetween(String value1, String value2) {
-            addCriterion("operations_name between", value1, value2, "operationsName");
-            return (Criteria) this;
-        }
-
-        public Criteria andOperationsNameNotBetween(String value1, String value2) {
-            addCriterion("operations_name not between", value1, value2, "operationsName");
             return (Criteria) this;
         }
     }

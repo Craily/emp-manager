@@ -28,6 +28,6 @@ public interface CustEmpMapper {
  	 * @param jobNo
  	 * @return
  	 */
- 	List<Map<String, Object>> queryEmpOperationsByFlag(@Param("jobNo") String jobNo);
+ 	List<Map<String, Object>> queryEmpOperationsByJobNo(@Param("jobNo") String jobNo);
  	
 }

@@ -7,6 +7,7 @@
 <link rel="stylesheet" href="/css/index/index.css">
 <link rel="stylesheet" href="/layui/css/layui.css">
 <script type="text/javascript" src="/layui/layui.js"></script>
+<script type="text/javascript" src="/js/comm/core.js"></script>
 <script type="text/javascript" src="/js/index/index.js"></script>
 </head>
 <body class="layui-layout-body">
@@ -39,7 +40,8 @@
 					<li class="layui-nav-item layui-nav-itemed">
 						<a class="" href="javascript:;" url="111" id="index" title="首页">首页</a>
 					</li>
-					<li class="layui-nav-item layui-nav-itemed">
+					<shiro:hasAnyRoles name="员工管理,all">
+					<li class="layui-nav-item">
 						<a class="" href="javascript:;">员工管理</a>
 						<dl class="layui-nav-child">
 							<dd>
@@ -47,6 +49,8 @@
 							</dd>
 						</dl>
 					</li>
+					</shiro:hasAnyRoles>
+					<shiro:hasAnyRoles name="部门管理,all">
 					<li class="layui-nav-item">
 						<a href="javascript:;">部门管理</a>
 						<dl class="layui-nav-child">
@@ -55,6 +59,27 @@
 							</dd>
 						</dl>
 					</li>
+					</shiro:hasAnyRoles>
+					<shiro:hasAnyRoles name="职位管理,all">
+					<li class="layui-nav-item">
+						<a href="javascript:;">职位管理</a>
+						<dl class="layui-nav-child">
+							<dd>
+								<a href="javascript:;" url="/job/index" id="job" title="职位总览">职位总览</a>
+							</dd>
+						</dl>
+					</li>
+					</shiro:hasAnyRoles>
+					<shiro:hasAnyRoles name="权限管理,all">
+					<li class="layui-nav-item">
+						<a href="javascript:;">权限管理</a>
+						<dl class="layui-nav-child">
+							<dd>
+								<a href="javascript:;" url="/authority/index" id="authority" title="权限控制">权限控制</a>
+							</dd>
+						</dl>
+					</li>
+					</shiro:hasAnyRoles>
 				</ul>
 			</div>
 		</div>

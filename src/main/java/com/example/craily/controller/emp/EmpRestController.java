@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.craily.model.EmpBean;
-import com.example.craily.po.Dept;
 import com.example.craily.po.Emp;
 import com.example.craily.service.EmpService;
 import com.example.craily.utils.ConstantUtil;

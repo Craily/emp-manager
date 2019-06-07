@@ -1,17 +1,28 @@
+<script type="text/javascript" src="/js/emp/comm.js"></script>
 <script type="text/javascript" src="/js/emp/index.js"></script>
-<div class="layui-inline">
-	<label class="layui-form-label">姓名</label>
-	<div class="layui-input-inline">
-		<input type="text" id="empName" lay-verify="required" autocomplete="off" class="layui-input">
+<div class="layui-form">
+	<div class="layui-inline">
+		<label class="layui-form-label">姓名</label>
+		<div class="layui-input-inline">
+			<input type="text" id="empName" lay-verify="required" autocomplete="off" class="layui-input">
+		</div>
 	</div>
-	<button class="layui-btn" data-type="reload">搜索</button>
+	<div class="layui-inline">
+		<label class="layui-form-label">所属部门</label>
+		<div class="layui-input-inline">
+			<select id="deptNo" name="deptNo" lay-filter="deptNo">
+			</select>
+		</div>
+	</div>
+	<div class="layui-inline">
+		<button class="layui-btn" data-type="reload">搜索</button>
+	</div>
 </div>
 
 <table id="empTable" lay-filter="empTable"></table>
 
 <script type="text/html" id="empTableBar">
-	<a class="layui-btn layui-btn-xs layui-btn-normal" lay-event="beManager">任命经理</a>
-	<a class="layui-btn layui-btn-xs layui-btn-warm" lay-event="beAssistant">任命助理</a>
+	<a class="layui-btn layui-btn-xs layui-btn-normal" lay-event="beRole">任命</a>
 	<a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
 	<a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="del">删除</a>
 </script>
