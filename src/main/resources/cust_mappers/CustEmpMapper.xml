@@ -51,7 +51,7 @@
 	
 	<select id="queryEmpOperationsByJobNo" resultType="java.util.Map">
 		select
-			o.`name`
+			o.operations_name
 		from
 			operations o
 		left join

@@ -4,6 +4,7 @@ import java.util.Map;
 
 import com.example.craily.po.Emp;
 import com.example.craily.po.Menu;
+import com.example.craily.po.Operations;
 import com.example.craily.utils.ResponeUtil;
 
 public interface AuthorityService {
@@ -44,4 +45,37 @@ public interface AuthorityService {
 	 * @return
 	 */
 	ResponeUtil<String> editMenu(Menu menu);
+	
+	/**
+	 * 根据权限NO查询权限
+	 * @param operationsNo
+	 * @return
+	 */
+	ResponeUtil<Operations> queryOperationInfo(String operationsNo);
+	
+	/**
+	 * 创建权限
+	 * @param emp
+	 * @param operations
+	 * @return
+	 */
+	ResponeUtil<String> createOperation(Emp emp, Operations operations);
+	
+	/**
+	 * 编辑权限
+	 * @param emp
+	 * @param operations
+	 * @return
+	 */
+	ResponeUtil<String> editOperation(Emp emp, Operations operations);
+	
+	/**
+	 * 保存用户权限
+	 * @param selectedJobNo
+	 * @param firstMenu
+	 * @param secondMenuArray
+	 * @param operationsNameArray
+	 * @return
+	 */
+	ResponeUtil<String> saveAuthority(String selectedJobNo, String firstMenu, String[] secondMenuArray, String[] operationsNameArray);
 }

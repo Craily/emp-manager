@@ -14,17 +14,15 @@
 		ON 
 			m.menu_no = jm.menu_no
 		WHERE
+			jm.job_no = #{jobNo}
 		<choose>
 			<when test="parentMenuNo == null">
-			m.parent_menu_no is null
+		AND	m.parent_menu_no is null
 			</when>
 			<otherwise>
-			m.parent_menu_no = #{parentMenuNo}
+		AND	m.parent_menu_no = #{parentMenuNo}
             </otherwise>
 		</choose>
-		<if test='jobNo != "1"'>
-		AND jm.job_no = #{jobNo}
-		</if>
 	</select>
 	
 </mapper>

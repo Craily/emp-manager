@@ -5,7 +5,7 @@ layui.use(['form', 'laydate'], function() {
 	, layer = layui.layer;
 
 	laydate.render({
-		elem: '#birthday'
+		elem: '#joinTime'
 	});
 	
 	//初始化部门下拉框
@@ -21,7 +21,7 @@ layui.use(['form', 'laydate'], function() {
 				    "name": emp.emp_name,
 				    "sex": emp.sex,
 				    "mobilePhone": emp.mobile_phone,
-				    "birthday": emp.birthday,
+				    "joinTime": emp.join_time,
 				    "deptNo": emp.dept_no
 				});
 			}else {

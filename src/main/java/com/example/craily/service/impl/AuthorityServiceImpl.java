@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,14 +13,12 @@ import com.example.craily.cust_dao.CustAuthorityMapper;
 import com.example.craily.dao.JobMenuMapper;
 import com.example.craily.dao.MenuMapper;
 import com.example.craily.dao.OperationsMapper;
-import com.example.craily.model.OperationsBean;
 import com.example.craily.po.Emp;
 import com.example.craily.po.JobMenu;
 import com.example.craily.po.Menu;
 import com.example.craily.po.MenuExample;
 import com.example.craily.po.Operations;
 import com.example.craily.po.OperationsExample;
-import com.example.craily.po.OperationsExample.Criteria;
 import com.example.craily.service.AuthorityService;
 import com.example.craily.utils.ConstantUtil;
 import com.example.craily.utils.ResponeUtil;
@@ -39,8 +36,6 @@ public class AuthorityServiceImpl implements AuthorityService {
 	private MenuMapper menuMapper;
 	@Autowired
 	private JobMenuMapper jobMenuMapper;
-	
-	private String[] CRUD = {"新增", "查询", "更改", "删除"};
 	
 	@Override
 	public ResponeUtil<Map<String, Object>> queryMenu(Emp emp, String selectedJobNo, String selectedMenuNo) {
@@ -84,8 +79,7 @@ public class AuthorityServiceImpl implements AuthorityService {
 		// TODO 根据登陆用户职位与下拉框所选职位以及所选菜单返回应显示操作
 		ResponeUtil<Map<String, Object>> responeUtil = new ResponeUtil<Map<String,Object>>();
 		Map<String, Object> result = new HashMap<String, Object>();
-		result.put("CRUD", new ArrayList<>());
-		result.put("others", new ArrayList<>());
+		result.put("list", new ArrayList<>());
 		responeUtil.setStatus(ConstantUtil.Success.getCode());
 		responeUtil.setMsg(ConstantUtil.Success.getMsg());
 		responeUtil.setData(result);
@@ -111,46 +105,39 @@ public class AuthorityServiceImpl implements AuthorityService {
 		selectedOperationsExample.createCriteria().andJobNoEqualTo(selectedJobNo).andMenuNoEqualTo(selectedMenuNo);
 		List<Operations> selectedOperationsList = operationsMapper.selectByExample(selectedOperationsExample);
 		
-		List<OperationsBean> ownOperationsBeanList = new ArrayList<OperationsBean>();
-		List<OperationsBean> CRUDList = new ArrayList<OperationsBean>();
+		List<Map<String, String>> ownOperationsBeanList = new ArrayList<Map<String, String>>();
 		//遍历当前操作人的操作权限是否包含下拉框职业的操作权限，包含则前台选中
-		ownOperationsList.forEach(ownOperations -> {
+		for (Operations ownOperations : ownOperationsList) {
 			if(selectedOperationsList == null || selectedOperationsList.isEmpty()) {
-				OperationsBean operationsBean = new OperationsBean();
-				BeanUtils.copyProperties(ownOperations, operationsBean);
-				ownOperationsBeanList.add(operationsBean);
+				Map<String, String> map = new HashMap<String, String>();
+				map.put("operationsNo", ownOperations.getOperationsNo());
+				map.put("jobNo", ownOperations.getJobNo());
+				map.put("menuNo", ownOperations.getMenuNo());
+				map.put("operationsName", ownOperations.getOperationsName());
+				ownOperationsBeanList.add(map);
 			}else {
-				//筛选出选中菜单
-				selectedOperationsList.forEach(selectedOperations -> {
+				for (Operations selectedOperations : selectedOperationsList) {
 					if(ownOperations.getOperationsName().equals(selectedOperations.getOperationsName())) {
-						OperationsBean operationsBean = new OperationsBean();
-						BeanUtils.copyProperties(ownOperations, operationsBean);
-						operationsBean.setLAY_CHECKED(true);
-						ownOperationsBeanList.add(operationsBean);
+						Map<String, String> map = new HashMap<String, String>();
+						map.put("operationsNo", ownOperations.getOperationsNo());
+						map.put("jobNo", ownOperations.getJobNo());
+						map.put("menuNo", ownOperations.getMenuNo());
+						map.put("operationsName", ownOperations.getOperationsName());
+						map.put("LAY_CHECKED", "true");
+						ownOperationsBeanList.add(map);
 					}
-				});
-			}
-		});
-		
-		//分离CRUD与其他操作权限
-		ownOperationsBeanList.forEach(ownOperationsBean -> {
-			for (String name : CRUD) {
-				if(name.equals(ownOperationsBean.getOperationsName())) {
-					CRUDList.add(ownOperationsBean);
 				}
 			}
-		});
+		}
 		
-		ownOperationsBeanList.removeAll(CRUDList);
-		result.put("CRUD", CRUDList);
-		result.put("others", ownOperationsBeanList);
+		result.put("list", ownOperationsBeanList);
 		return responeUtil;
 	}
 	
 	private List<Operations> retCRUDList(List<Operations> list, String jobNo, String menuNo){
 		try {
 			Operations create = crud(jobNo, menuNo, "新增");
-			Operations del = crud(jobNo, menuNo, "删除删除删除删除删除删除删除删除删除删除删除删除删除删除删除删除删除删除删除删除删除删除删除删除删除删除删除删除删除删除删除删除删除删除");
+			Operations del = crud(jobNo, menuNo, "删除");
 			Operations update = crud(jobNo, menuNo, "更改");
 			Operations read = crud(jobNo, menuNo, "查询");
 			list.add(create);
@@ -247,6 +234,121 @@ public class AuthorityServiceImpl implements AuthorityService {
 			throw new RuntimeException(e);
 		}
 	}
-	
-	
+
+	@Override
+	public ResponeUtil<Operations> queryOperationInfo(String operationsNo) {
+		// 根据权限NO查询权限
+		ResponeUtil<Operations> responeUtil = null;
+		OperationsExample operationsExample = new OperationsExample();
+		operationsExample.createCriteria().andOperationsNoEqualTo(operationsNo);
+		List<Operations> list = operationsMapper.selectByExample(operationsExample);
+		if(list == null || list.isEmpty()) {
+			responeUtil = new ResponeUtil<Operations>(ConstantUtil.Empty.getCode(), ConstantUtil.Empty.getMsg());
+			return responeUtil;
+		}
+		responeUtil = new ResponeUtil<Operations>(ConstantUtil.Success.getCode(), ConstantUtil.Success.getMsg(), list.get(0));
+		return responeUtil;
+	}
+
+	@Override
+	public ResponeUtil<String> createOperation(Emp emp, Operations operations) {
+		// TODO 创建权限
+		try {
+			operations.setJobNo(emp.getJobNo());
+			operations.setOperationsNo(UUIDUtil.get32UUID());
+			int index = operationsMapper.insert(operations);
+			if(index == 0) {
+				return new ResponeUtil<String>(ConstantUtil.Fail.getCode(), ConstantUtil.Fail.getMsg(), ConstantUtil.Fail.getMsg());
+			}else {
+				return new ResponeUtil<String>(ConstantUtil.Success.getCode(), ConstantUtil.Success.getMsg(), ConstantUtil.Success.getMsg());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+		
+	}
+
+	@Override
+	public ResponeUtil<String> editOperation(Emp emp, Operations operations) {
+		// TODO 编辑权限
+		try {
+			OperationsExample operationsExample = new OperationsExample();
+			operationsExample.createCriteria().andOperationsNoEqualTo(operations.getOperationsNo());
+			List<Operations> list = operationsMapper.selectByExample(operationsExample);
+			if(list == null || list.isEmpty()) {
+				return new ResponeUtil<String>(ConstantUtil.Empty.getCode(), ConstantUtil.Empty.getMsg(), ConstantUtil.Empty.getMsg());
+			}
+			Operations oldOperations = list.get(0);
+			oldOperations.setOperationsName(operations.getOperationsName());
+			int index = operationsMapper.updateByExample(oldOperations, operationsExample);
+			if(index == 0) {
+				return new ResponeUtil<String>(ConstantUtil.Fail.getCode(), ConstantUtil.Fail.getMsg(), ConstantUtil.Fail.getMsg());
+			}else {
+				return new ResponeUtil<String>(ConstantUtil.Success.getCode(), ConstantUtil.Success.getMsg(), ConstantUtil.Success.getMsg());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+		
+	}
+
+	@Override
+	public ResponeUtil<String> saveAuthority(String selectedJobNo, String firstMenu, String[] secondMenuArray,
+			String[] operationsNameArray) {
+		// TODO 保存用户权限
+		try {
+			//保存菜单职位表
+			JobMenu jobMenu = new JobMenu();
+			jobMenu.setJobNo(selectedJobNo);
+			jobMenu.setMenuNo(firstMenu);
+			int i = jobMenuMapper.insert(jobMenu);
+			if(i == 0) {
+				return new ResponeUtil<String>(ConstantUtil.Fail.getCode(), ConstantUtil.Fail.getMsg(), ConstantUtil.Fail.getMsg());
+			}
+			
+			if(secondMenuArray.length == 0) {
+				for (String operationName : operationsNameArray) {
+					Operations operations = new Operations();
+					operations.setJobNo(selectedJobNo);
+					operations.setMenuNo(firstMenu);
+					operations.setOperationsName(operationName);
+					operations.setOperationsNo(UUIDUtil.get32UUID());
+					int index = operationsMapper.insert(operations);
+					if(index == 0) {
+						return new ResponeUtil<String>(ConstantUtil.Fail.getCode(), ConstantUtil.Fail.getMsg(), ConstantUtil.Fail.getMsg());
+					}
+				}
+			}else {
+				for (String secondMenu : secondMenuArray) {
+					JobMenu menu = new JobMenu();
+					menu.setJobNo(selectedJobNo);
+					menu.setMenuNo(secondMenu);
+					int in = jobMenuMapper.insert(menu);
+					if(in == 0) {
+						return new ResponeUtil<String>(ConstantUtil.Fail.getCode(), ConstantUtil.Fail.getMsg(), ConstantUtil.Fail.getMsg());
+					}
+					
+					for (String operationName : operationsNameArray) {
+						Operations operations = new Operations();
+						operations.setJobNo(selectedJobNo);
+						operations.setMenuNo(secondMenu);
+						operations.setOperationsName(operationName);
+						operations.setOperationsNo(UUIDUtil.get32UUID());
+						int index = operationsMapper.insert(operations);
+						if(index == 0) {
+							return new ResponeUtil<String>(ConstantUtil.Fail.getCode(), ConstantUtil.Fail.getMsg(), ConstantUtil.Fail.getMsg());
+						}
+					}
+				}
+			}
+			return new ResponeUtil<String>(ConstantUtil.Success.getCode(), ConstantUtil.Success.getMsg(), ConstantUtil.Success.getMsg());
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new RuntimeException(e);
+		}
+		
+	}
+
 }

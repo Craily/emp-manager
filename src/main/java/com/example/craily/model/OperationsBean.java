@@ -17,7 +17,7 @@ public class OperationsBean implements Serializable {
 
 	private String operationsName;
 
-	private boolean LAY_CHECKED;
+	private String LAY_CHECKED;
 
 	/**
 	 * 
@@ -59,11 +59,11 @@ public class OperationsBean implements Serializable {
 		this.operationsName = operationsName;
 	}
 
-	public boolean isLAY_CHECKED() {
+	public String getLAY_CHECKED() {
 		return LAY_CHECKED;
 	}
 
-	public void setLAY_CHECKED(boolean lAY_CHECKED) {
+	public void setLAY_CHECKED(String lAY_CHECKED) {
 		LAY_CHECKED = lAY_CHECKED;
 	}
 

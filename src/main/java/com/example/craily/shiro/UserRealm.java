@@ -60,7 +60,7 @@ public class UserRealm extends AuthorizingRealm {
 			if(operations == null) {
 				throw new UnauthorizedException();
 			}
-			operations.forEach(operation -> permissions.add(operation.get("name").toString()));
+			operations.forEach(operation -> permissions.add(operation.get("operations_name").toString()));
 		}
 		simpleAuthorizationInfo.setRoles(roles);
 		simpleAuthorizationInfo.setStringPermissions(permissions);

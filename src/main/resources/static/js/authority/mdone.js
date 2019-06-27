@@ -1,5 +1,5 @@
-layui.use(['form', 'laydate'], function() {
-	var form = layui.form, laydate = layui.laydate;
+layui.use('form', function() {
+	var form = layui.form;
 	
 	var $ = layui.$ // 由于layer弹层依赖jQuery，所以可以直接得到
 	, layer = layui.layer;
@@ -23,6 +23,7 @@ layui.use(['form', 'laydate'], function() {
 	//监听提交
 	form.on('submit(done)', function(data) {
 		var url = "/authority/createMenu";
+		var menuNo = $('#menuNo').val();
 		if(menuNo != null && menuNo != undefined && menuNo != ""){
 			url = "/authority/editMenu";
 		}
@@ -33,7 +34,28 @@ layui.use(['form', 'laydate'], function() {
 				parent.layer.close(index);
 				
 				// 表格重载
-				parent.layui.table.reload('menuTable',{page:{curr:1}});
+				var selectedJobNo = $('#selectedJobNo').val();
+				if(parentMenuNo == null || parentMenuNo == "" || parentMenuNo == undefined || parentMenuNo == "null"){
+					var data = getMenuData($, selectedJobNo);
+					//执行重载
+					parent.layui.table.reload('menuTable', {
+			    		data: data
+				    });
+					parent.layui.table.reload('childrenMenuTable', {
+			    		data: []
+				    });
+					parent.layui.table.reload('haveOperationTable', {
+			    		data: []
+				    });
+				}else {
+					var data = getMenuData($, selectedJobNo, parentMenuNo);
+					parent.layui.table.reload('childrenMenuTable', {
+			    		data: data
+				    });
+					parent.layui.table.reload('haveOperationTable', {
+			    		data: []
+				    });
+				}
 			}else {
 				layer.msg(d.msg, {icon: 6, anim: 6}); 
 			}
@@ -41,3 +63,24 @@ layui.use(['form', 'laydate'], function() {
 		return false;
 	});
 });
+
+function getMenuData($, jobNo, menuNo){
+	var data = [];
+	$.ajax({
+		url: '/authority/queryMenu',
+		type: 'POST',
+		async: false,
+		data: {
+			selectedJobNo: jobNo,
+			selectedMenuNo: menuNo
+		},
+		traditional: true,
+		dataType: 'json',
+		success: function(d){
+			if(d.status === 1) {
+				data = d.data.list;
+			}
+		}
+	});
+	return data;
+}

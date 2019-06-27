@@ -4,20 +4,20 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-<title>菜单操作弹窗</title>
+<title>权限操作弹窗</title>
 <link rel="stylesheet" href="/layui/css/layui.css">
 <script type="text/javascript" src="/layui/layui.js"></script>
-<script type="text/javascript" src="/js/authority/mdone.js"></script>
+<script type="text/javascript" src="/js/authority/odone.js"></script>
 </head>
 <body style="padding: 30px 50px 0px 0px;">
-	<form class="layui-form" action="" lay-filter="emp-form">
+	<form class="layui-form" action="" lay-filter="operation-form">
 		<input type="hidden" id="menuNo" name="menuNo" th:value="${menuNo}">
-		<input type="hidden" id="parentMenuNo" name="parentMenuNo" th:value="${parentMenuNo}">
+		<input type="hidden" id="operationsNo" th:value="${operationsNo}">
 		<input type="hidden" id="selectedJobNo" th:value="${selectedJobNo}">
 		<div class="layui-form-item">
 			<label class="layui-form-label">名称</label>
 			<div class="layui-input-block">
-				<input type="text" name="name" required  lay-verify="required" placeholder="请输入名称" autocomplete="off" class="layui-input">
+				<input type="text" name="operationsName" required  lay-verify="required" placeholder="请输入名称" autocomplete="off" class="layui-input">
 			</div>
 		</div>
 		<div class="layui-form-item">

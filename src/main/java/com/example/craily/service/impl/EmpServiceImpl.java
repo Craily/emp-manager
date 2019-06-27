@@ -73,6 +73,7 @@ public class EmpServiceImpl implements EmpService {
 			empBean.setPassword("111111");
 			empBean.setJobNo("4");
 			empBean.setEmpNo(UUIDUtil.get32UUID());
+			empBean.setLoginName(empBean.getName());
 			
 			Emp emp = new Emp();
 			BeanUtils.copyProperties(empBean, emp);
